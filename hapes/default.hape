@@ -3,13 +3,13 @@
 ##
 ##
 $the_hape = <<EOH;
+                                                                   $thoughts
                                                                   $thoughts
                                                                  $thoughts
-                                                                $thoughts
-                               _,w+=^^"""""^^==pww===._
-                            mM"            _=^         "w
-                           P ,    ^      ,^              T
-                          [ ,  ,-     _=`       ,=^JJJ,,7,'_
+                               _,w+=^^"""""^^==pww===._         $thoughts
+                            mM"            _=^         "w      $thoughts
+                           P ,    ^      ,^              T    $thoughts
+                          [ ,  ,-     _=`       ,=^JJJ,,7,'_ $thoughts
                           ] L       ,^     __-,m^   _   _ T/
                            %L L-^--C   _,="  A   ,^AA! |AAw p
                             ]^ /^""w`/`    ,E   {LMMMA][wMMA m
@@ -34,6 +34,6 @@ $the_hape = <<EOH;
                            _ ^          ".  `v_        ]Fw \
                         ,-`                ", '0TFM^"""   T EY.
                     _.^                       "w^w        /%b   "w_
-                    Rid
+                   Powered by hapesay (rid#2535)
 
 EOH
