@@ -93,7 +93,7 @@ func (cow *Cow) writeBallon(lines []*line, maxWidth int) {
 	top := make([]byte, 0)
 	bottom := make([]byte, 0)
 
-	for i := 0; i < 69; i++ {
+	for i := 0; i < 66; i++ {
 		top = append(top, ' ')
 		bottom = append(bottom, ' ')
 	}
@@ -115,7 +115,7 @@ func (cow *Cow) writeBallon(lines []*line, maxWidth int) {
 	l := len(lines)
 	if l == 1 {
 		border := borderType.only
-		for i := 0; i < 68; i++ {
+		for i := 0; i < 65; i++ {
 			cow.buf.WriteRune(' ')
 		}
 		cow.buf.WriteRune(border[0])
@@ -137,7 +137,7 @@ func (cow *Cow) writeBallon(lines []*line, maxWidth int) {
 		default:
 			border = borderType.middle
 		}
-		for i := 0; i < 68; i++ {
+		for i := 0; i < 65; i++ {
 			cow.buf.WriteRune(' ')
 		}
 		cow.buf.WriteRune(border[0])
