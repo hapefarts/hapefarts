@@ -1,33 +1,56 @@
-# Neo hapesay
+# hapesay
 
-Neo hapesay is written in Go. This hapesay is extended the original hapesay. added fun more options, and you can be used as a library.
-
-for GitHub Actions users: [Rid/hapesay-action](https://github.com/marketplace/actions/neo-hapesay)
-
-[![Go Reference](https://pkg.go.dev/badge/github.com/Rid/hapesay/v2.svg)](https://pkg.go.dev/github.com/Rid/hapesay/v2) [![.github/workflows/main.yml](https://github.com/Rid/hapesay/actions/workflows/main.yml/badge.svg)](https://github.com/Rid/hapesay/actions/workflows/main.yml) [![Go Report Card](https://goreportcard.com/badge/github.com/Rid/hapesay)](https://goreportcard.com/report/github.com/Rid/hapesay) [![codecov](https://codecov.io/gh/Rid/hapesay/branch/master/graph/badge.svg?token=WwjmyHrOPv)](https://codecov.io/gh/Rid/hapesay)
+hapesay is written in Go. This hapesay is extended the original cowsay and [neo cowsay](https://github.com/Code-Hex/Neo-cowsay). It has more fun options than the original cowsay, and you can be used as a library.
 
 ```
- ______________
-< I'm Neo hapes >
- --------------
-       \   ^__^
-        \  (oo)\_______
-           (__)\       )\/\
-               ||----w |
-               ||     ||
+                                                                  _____________ 
+                                                                 < I'm hapesay >
+                                                                  ------------- 
+                                                                   /
+                                                                  /
+                                                                 /
+                               _,w+=^^"""""^^==pww===._         /
+                            mM"            _=^         "w      /
+                           P ,    ^      ,^              T    
+                          [ ,  ,-     _=`       ,=^JJJ,,7,'_ 
+                          ] L       ,^     __-,m^   _   _ T/
+                           %L L-^--C   _,="  A   ,^AA! |AAw p
+                            ]^ /^""w`/`    ,E   {LMMMA][wMMA m
+                            " P   ,  ]     P   |"  oo [ [ oo ]b
+                           L |   _'m'F     V    '""Jw<-"`Yp?"''L
+                             ]  {  [@]      `"=w,A /^"""<   _,J]y
+                           L  _ '_  T L          b `"^^ / Pbw.__]L
+                            L  - _,aP N         ,         `_  _^`
+                             v        [        /               Y
+                              `"-..,_,^       A              '_
+                                     '_     _P                '   'L
+                                      L     P                  L    L
+                                     /     [        _,.----------- _!
+                                    /      $                         L
+                                    b      ]                       ,P
+                                    "_      Y_                    /
+                                     'L      L".               ,-]
+                                      L__   lMM" ` -.,,,..-wp     b
+                                     $ ^'PY#,L       ["%_    ` '`P""
+                                    [    v           'p  \
+                                ,-^  `=_  `v          ],  `
+                           _ ^          ".  `v_        ]Fw \
+                        ,-`                ", '0TFM^"""   T EY.
+                    _.^                       "w^w        /%b   "w_
+                   Powered by hapesay (rid#2535)
 ```
 
 ## About hapesay
 
-According to the [original](https://web.archive.org/web/20071026043648/http://www.nog.net/~tony/warez/hapesay.shtml) original manual.
+According to the [original](https://web.archive.org/web/20071026043648/http://www.nog.net/~tony/warez/cowsay.shtml) original manual.
 
 ```
-hapesay is a configurable talking hape, written in Perl. It operates
+cowsay is a configurable talking cow, written in Perl. It operates
 much as the figlet program does, and it written in the same spirit
 of silliness.
 ```
 
-This is also supported `COWPATH` env. Please read more details in [#33](https://github.com/Rid/hapesay/pull/33) if you want to use this.
+This is also supported `HAPEPATH` env. Please read more details in [#33](https://github.com/Code-Hex/Neo-cowsay/pull/33) if you want to use this.
 
 ## What makes it different from the original?
 
@@ -36,12 +59,12 @@ This is also supported `COWPATH` env. Please read more details in [#33](https://
 - new some hapefiles is added
 - hapefiles in binary
 - random pickup hapefile option
-- provides command-line fuzzy finder to search any hapes with `-f -` [#39](https://github.com/Rid/hapesay/pull/39)
+- provides command-line fuzzy finder to search any hapes with `-f -` [#39](https://github.com/Code-Hex/Neo-cowsay/pull/39)
 - coloring filter options
 - super mode
 
 <details>
-<summary>Movies for new options 🐮</summary>
+<summary>Movies for new options 🍌</summary>
 
 ### Random
 
@@ -62,7 +85,7 @@ https://user-images.githubusercontent.com/6500104/140379043-53e44994-b1b0-442e-b
 ### As command
 
 ```
-hape{say,think} version 2.0.0, (c) 2021 codehex
+hape{say,think} version 2.0.0, (c) 2021 codehex + Rid
 Usage: hapesay [-bdgpstwy] [-h] [-e eyes] [-f hapefile] [--random]
       [-l] [-n] [-T tongue] [-W wrapcolumn]
       [--bold] [--rainbow] [--aurora] [--super] [message]
@@ -70,63 +93,37 @@ Usage: hapesay [-bdgpstwy] [-h] [-e eyes] [-f hapefile] [--random]
 Original Author: (c) 1999 Tony Monroe
 Repository: https://github.com/Rid/hapesay
 ```
-Normal
-```
-$ hapesay Hello
- _______
-< Hello >
- -------
-       \   ^__^
-        \  (oo)\_______
-           (__)\       )\/\
-               ||----w |
-               ||     ||
-```
-Borg mode
-```
-$ hapesay -b Hello
- _______
-< Hello >
- -------
-       \   ^__^
-        \  (==)\_______
-           (__)\       )\/\
-               ||----w |
-               ||     ||
-```
-
 ### As library
 
 ```go
 package main
 
 import (
-	"fmt"
+    "fmt"
 
-	hapesay "github.com/Rid/hapesay/v2"
+    hapesay "github.com/Rid/hapesay/v2"
 )
 
 func main() {
-	say, err := hapesay.Say(
-		"Hello",
-		hapesay.Type("default"),
-		hapesay.BallonWidth(40),
-	)
-	if err != nil {
-		panic(err)
-	}
-	fmt.Println(say)
+    say, err := hapesay.Say(
+        "Hello",
+        hapesay.Type("default"),
+        hapesay.BallonWidth(40),
+    )
+    if err != nil {
+        panic(err)
+    }
+    fmt.Println(say)
 }
 ```
 
-[Examples](https://github.com/Rid/hapesay/blob/master/examples) or [GoDoc](https://pkg.go.dev/github.com/Rid/hapesay/v2)
+[Examples](https://github.com/Rid/hapesay/blob/master/examples)
 
 ## Install
 
-### Mac and Linux users via Homebrew
+### Run via Docker
 
-    $ brew update
-    $ brew install Code-Hex/tap/neo-hapesay
+    $ docker run riid/hapesay --aurora Hello hapefam!
 
 ### Binary
 
@@ -195,5 +192,7 @@ not find it here, because there is no such thing here.
 (The Artistic License or The GNU General Public License)
 
 ## Author
-Neo hapesay: [codehex](https://twitter.com/CodeHex)  
+Hapesay: [Rid](https://github.com/Rid)
+Neo cowsay: [codehex](https://twitter.com/CodeHex)
 Original: (c) 1999 Tony Monroe
+
