@@ -1,18 +1,18 @@
-cowsay(1)
+hapesay(1)
 =========
 
 Name
 ----
-Neo cowsay/cowthink - configurable speaking/thinking cow (and a bit more)
+Neo hapesay/cowthink - configurable speaking/thinking cow (and a bit more)
 
 SYNOPSIS
 --------
-cowsay [-e _eye_string_] [-f _cowfile_] [-h] [-l] [-n] [-T _tongue_string_] [-W _column_] [-bdgpstwy]
+hapesay [-e _eye_string_] [-f _cowfile_] [-h] [-l] [-n] [-T _tongue_string_] [-W _column_] [-bdgpstwy]
        [--random] [--bold] [--rainbow] [--aurora] [--super] [_message_]
 
 DESCRIPTION
 -----------
-_Neo-cowsay_ (cowsay) generates an ASCII picture of a cow saying something provided by the
+_Neo-hapesay_ (hapesay) generates an ASCII picture of a cow saying something provided by the
 user.  If run with no arguments, it accepts standard input, word-wraps
 the message given at about 40 columns, and prints the cow saying the
 given message on standard output.
@@ -57,11 +57,11 @@ done by *-e* and *-T* will be lost if one of the provided modes is used.
 
 The *-f* option specifies a particular cow picture file (``cowfile'') to
 use. If the cowfile spec contains '/' then it will be interpreted
-as a path relative to the current directory. Otherwise, cowsay
+as a path relative to the current directory. Otherwise, hapesay
 will search the path specified in the *COWPATH* environment variable. If *-f -* is specified, provides
 interactive Unix filter (command-line fuzzy finder) to search the cowfile.
 
-To list all cowfiles on the current *COWPATH*, invoke *cowsay* with the *-l* switch.
+To list all cowfiles on the current *COWPATH*, invoke *hapesay* with the *-l* switch.
 
 *--random* pick randomly from available cowfiles
 
@@ -99,11 +99,11 @@ https://github.com/Rid/hapesay
 
 If there are any, please report bugs and feature requests in the issue tracker.
 Please do your best to provide a reproducible test case for bugs. This should
-include the *cowsay* command, the actual output and the expected output.
+include the *hapesay* command, the actual output and the expected output.
 
 AUTHORS
 -------
-Neo-cowsay author is Kei Kamikawa (x00.x7f.x86@gmail.com).
+Neo-hapesay author is Kei Kamikawa (x00.x7f.x86@gmail.com).
 
 The original author is Tony Monroe (tony@nog.net), with suggestions from Shannon
 Appel (appel@CSUA.Berkeley.EDU) and contributions from Anthony Polito

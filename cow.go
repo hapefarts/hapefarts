@@ -1,4 +1,4 @@
-package cowsay
+package hapesay
 
 import (
 	"fmt"
@@ -27,7 +27,7 @@ func New(options ...Option) (*Cow, error) {
 		thoughts: '\\',
 		typ: &CowFile{
 			Name:         "default",
-			BasePath:     "cows",
+			BasePath:     "hapes",
 			LocationType: InBinary,
 		},
 		ballonWidth: 40,

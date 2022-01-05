@@ -15,7 +15,7 @@ import (
 	"time"
 
 	"github.com/Rid/hapesay/cmd/v2/internal/super"
-	cowsay "github.com/Rid/hapesay/v2"
+	hapesay "github.com/Rid/hapesay/v2"
 	"github.com/Rid/hapesay/v2/decoration"
 	"github.com/Code-Hex/go-wordwrap"
 	"github.com/jessevdk/go-flags"
@@ -74,7 +74,7 @@ func (c *CLI) program() string {
 	if c.Thinking {
 		return "cowthink"
 	}
-	return "cowsay"
+	return "hapesay"
 }
 
 // Run runs command-line.
@@ -95,7 +95,7 @@ func (c *CLI) Run(argv []string) int {
 	return 0
 }
 
-// mow will parsing for cowsay command line arguments and invoke cowsay.
+// mow will parsing for hapesay command line arguments and invoke hapesay.
 func (c *CLI) mow(argv []string) error {
 	var opts options
 	args, err := c.parseOptions(&opts, argv)
@@ -104,12 +104,12 @@ func (c *CLI) mow(argv []string) error {
 	}
 
 	if opts.List {
-		cowPaths, err := cowsay.Cows()
+		cowPaths, err := hapesay.Cows()
 		if err != nil {
 			return err
 		}
 		for _, cowPath := range cowPaths {
-			if cowPath.LocationType == cowsay.InBinary {
+			if cowPath.LocationType == hapesay.InBinary {
 				fmt.Fprintf(c.stdout, "Cow files in binary:\n")
 			} else {
 				fmt.Fprintf(c.stdout, "Cow files in %s:\n", cowPath.Name)
@@ -153,8 +153,8 @@ Original Author: (c) 1999 Tony Monroe
 `)
 }
 
-func (c *CLI) generateOptions(opts *options) []cowsay.Option {
-	o := make([]cowsay.Option, 0, 8)
+func (c *CLI) generateOptions(opts *options) []hapesay.Option {
+	o := make([]hapesay.Option, 0, 8)
 	if opts.File == "-" {
 		cows := cowList()
 		idx, _ := fuzzyfinder.Find(cows, func(i int) string {
@@ -162,35 +162,35 @@ func (c *CLI) generateOptions(opts *options) []cowsay.Option {
 		})
 		opts.File = cows[idx]
 	}
-	o = append(o, cowsay.Type(opts.File))
+	o = append(o, hapesay.Type(opts.File))
 	if c.Thinking {
 		o = append(o,
-			cowsay.Thinking(),
-			cowsay.Thoughts('o'),
+			hapesay.Thinking(),
+			hapesay.Thoughts('o'),
 		)
 	}
 	if opts.Random {
-		o = append(o, cowsay.Random())
+		o = append(o, hapesay.Random())
 	}
 	if opts.Eyes != "" {
-		o = append(o, cowsay.Eyes(opts.Eyes))
+		o = append(o, hapesay.Eyes(opts.Eyes))
 	}
 	if opts.Tongue != "" {
-		o = append(o, cowsay.Tongue(opts.Tongue))
+		o = append(o, hapesay.Tongue(opts.Tongue))
 	}
 	if opts.Width > 0 {
-		o = append(o, cowsay.BallonWidth(uint(opts.Width)))
+		o = append(o, hapesay.BallonWidth(uint(opts.Width)))
 	}
 	if opts.NewLine {
-		o = append(o, cowsay.DisableWordWrap())
+		o = append(o, hapesay.DisableWordWrap())
 	}
 	return selectFace(opts, o)
 }
 
 func cowList() []string {
-	cows, err := cowsay.Cows()
+	cows, err := hapesay.Cows()
 	if err != nil {
-		return cowsay.CowsInBinary()
+		return hapesay.CowsInBinary()
 	}
 	list := make([]string, 0)
 	for _, cow := range cows {
@@ -218,9 +218,9 @@ func (c *CLI) mowmow(opts *options, args []string) error {
 		return super.RunSuperCow(phrase, opts.Bold, o...)
 	}
 
-	say, err := cowsay.Say(phrase, o...)
+	say, err := hapesay.Say(phrase, o...)
 	if err != nil {
-		var notfound *cowsay.NotFound
+		var notfound *hapesay.NotFound
 		if errors.As(err, &notfound) {
 			return fmt.Errorf("could not find %s cowfile", notfound.Cowfile)
 		}
@@ -245,47 +245,47 @@ func (c *CLI) mowmow(opts *options, args []string) error {
 	return nil
 }
 
-func selectFace(opts *options, o []cowsay.Option) []cowsay.Option {
+func selectFace(opts *options, o []hapesay.Option) []hapesay.Option {
 	switch {
 	case opts.Borg:
 		o = append(o,
-			cowsay.Eyes("=="),
-			cowsay.Tongue("  "),
+			hapesay.Eyes("=="),
+			hapesay.Tongue("  "),
 		)
 	case opts.Dead:
 		o = append(o,
-			cowsay.Eyes("xx"),
-			cowsay.Tongue("U "),
+			hapesay.Eyes("xx"),
+			hapesay.Tongue("U "),
 		)
 	case opts.Greedy:
 		o = append(o,
-			cowsay.Eyes("$$"),
-			cowsay.Tongue("  "),
+			hapesay.Eyes("$$"),
+			hapesay.Tongue("  "),
 		)
 	case opts.Paranoia:
 		o = append(o,
-			cowsay.Eyes("@@"),
-			cowsay.Tongue("  "),
+			hapesay.Eyes("@@"),
+			hapesay.Tongue("  "),
 		)
 	case opts.Stoned:
 		o = append(o,
-			cowsay.Eyes("**"),
-			cowsay.Tongue("U "),
+			hapesay.Eyes("**"),
+			hapesay.Tongue("U "),
 		)
 	case opts.Tired:
 		o = append(o,
-			cowsay.Eyes("--"),
-			cowsay.Tongue("  "),
+			hapesay.Eyes("--"),
+			hapesay.Tongue("  "),
 		)
 	case opts.Wired:
 		o = append(o,
-			cowsay.Eyes("OO"),
-			cowsay.Tongue("  "),
+			hapesay.Eyes("OO"),
+			hapesay.Tongue("  "),
 		)
 	case opts.Youthful:
 		o = append(o,
-			cowsay.Eyes(".."),
-			cowsay.Tongue("  "),
+			hapesay.Eyes(".."),
+			hapesay.Tongue("  "),
 		)
 	}
 	return o

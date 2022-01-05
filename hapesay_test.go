@@ -1,4 +1,4 @@
-package cowsay
+package hapesay
 
 import (
 	"bytes"
@@ -156,7 +156,7 @@ func TestCowFile_ReadAll(t *testing.T) {
 }
 
 const defaultSay = ` ________ 
-< cowsay >
+< hapesay >
  -------- 
         \   ^__^
          \  (oo)\_______

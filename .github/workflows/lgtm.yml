@@ -9,11 +9,11 @@ jobs:
     runs-on: ubuntu-latest
     if: github.event.review.state == 'approved'
     steps:
-    - name: Cowsay LGTM
+    - name: hapesay LGTM
       uses: Rid/hapesay-action@v1.0.2
       with:
         message: 'LGTM'
         cow: 'random'
-        cowsay_on_comment: true
+        hapesay_on_comment: true
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

@@ -10,14 +10,14 @@ import (
 	"time"
 
 	"github.com/Rid/hapesay/cmd/v2/internal/screen"
-	cowsay "github.com/Rid/hapesay/v2"
+	hapesay "github.com/Rid/hapesay/v2"
 	"github.com/Rid/hapesay/v2/decoration"
 	runewidth "github.com/mattn/go-runewidth"
 	"github.com/rivo/uniseg"
 )
 
-func getNoSaidCow(cow *cowsay.Cow, opts ...cowsay.Option) (string, error) {
-	opts = append(opts, cowsay.Thoughts(' '))
+func getNoSaidCow(cow *hapesay.Cow, opts ...hapesay.Option) (string, error) {
+	opts = append(opts, hapesay.Thoughts(' '))
 	cow, err := cow.Clone(opts...)
 	if err != nil {
 		return "", err
@@ -26,8 +26,8 @@ func getNoSaidCow(cow *cowsay.Cow, opts ...cowsay.Option) (string, error) {
 }
 
 // RunSuperCow runs super cow mode animation on the your terminal
-func RunSuperCow(phrase string, withBold bool, opts ...cowsay.Option) error {
-	cow, err := cowsay.New(opts...)
+func RunSuperCow(phrase string, withBold bool, opts ...hapesay.Option) error {
+	cow, err := hapesay.New(opts...)
 	if err != nil {
 		return err
 	}
@@ -165,7 +165,7 @@ const (
 	standup = 3 * time.Second
 )
 
-func (r *renderer) createFrames(cow *cowsay.Cow, withBold bool) {
+func (r *renderer) createFrames(cow *hapesay.Cow, withBold bool) {
 	const times = standup / span
 	w := r.newWriter(withBold)
 

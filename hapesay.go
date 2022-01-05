@@ -1,4 +1,4 @@
-package cowsay
+package hapesay
 
 import (
 	"io/ioutil"
@@ -14,7 +14,7 @@ func init() {
 	rand.Seed(time.Now().UTC().UnixNano())
 }
 
-// Say to return cowsay string.
+// Say to return hapesay string.
 func Say(phrase string, options ...Option) (string, error) {
 	cow, err := New(options...)
 	if err != nil {

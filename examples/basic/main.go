@@ -3,7 +3,7 @@ package main
 import (
 	"fmt"
 
-	cowsay "github.com/Rid/hapesay/v2"
+	hapesay "github.com/Rid/hapesay/v2"
 )
 
 func main() {
@@ -15,10 +15,10 @@ func main() {
 }
 
 func simple() {
-	say, err := cowsay.Say(
+	say, err := hapesay.Say(
 		"Hello",
-		cowsay.Type("default"),
-		cowsay.BallonWidth(40),
+		hapesay.Type("default"),
+		hapesay.BallonWidth(40),
 	)
 	if err != nil {
 		panic(err)
@@ -27,10 +27,10 @@ func simple() {
 }
 
 func complex() {
-	cow, err := cowsay.New(
-		cowsay.BallonWidth(40),
-		//cowsay.Thinking(),
-		cowsay.Random(),
+	cow, err := hapesay.New(
+		hapesay.BallonWidth(40),
+		//hapesay.Thinking(),
+		hapesay.Random(),
 	)
 	if err != nil {
 		panic(err)

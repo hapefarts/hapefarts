@@ -10,7 +10,7 @@ import (
 	"strings"
 	"time"
 
-	cowsay "github.com/Rid/hapesay/v2"
+	hapesay "github.com/Rid/hapesay/v2"
 )
 
 const limit = 1000
@@ -51,7 +51,7 @@ func main() {
 
 				phrase := strings.TrimSpace(buf.String())
 				log.Println(phrase)
-				say, _ := cowsay.Say(phrase)
+				say, _ := hapesay.Say(phrase)
 				conn.Write([]byte(say))
 			}()
 		}

@@ -1,8 +1,8 @@
-# Neo Cowsay
+# Neo hapesay
 
-Neo Cowsay is written in Go. This cowsay is extended the original cowsay. added fun more options, and you can be used as a library.
+Neo hapesay is written in Go. This hapesay is extended the original hapesay. added fun more options, and you can be used as a library.
 
-for GitHub Actions users: [Rid/hapesay-action](https://github.com/marketplace/actions/neo-cowsay)
+for GitHub Actions users: [Rid/hapesay-action](https://github.com/marketplace/actions/neo-hapesay)
 
 [![Go Reference](https://pkg.go.dev/badge/github.com/Rid/hapesay/v2.svg)](https://pkg.go.dev/github.com/Rid/hapesay/v2) [![.github/workflows/main.yml](https://github.com/Rid/hapesay/actions/workflows/main.yml/badge.svg)](https://github.com/Rid/hapesay/actions/workflows/main.yml) [![Go Report Card](https://goreportcard.com/badge/github.com/Rid/hapesay)](https://goreportcard.com/report/github.com/Rid/hapesay) [![codecov](https://codecov.io/gh/Rid/hapesay/branch/master/graph/badge.svg?token=WwjmyHrOPv)](https://codecov.io/gh/Rid/hapesay)
 
@@ -17,12 +17,12 @@ for GitHub Actions users: [Rid/hapesay-action](https://github.com/marketplace/ac
                ||     ||
 ```
 
-## About cowsay
+## About hapesay
 
-According to the [original](https://web.archive.org/web/20071026043648/http://www.nog.net/~tony/warez/cowsay.shtml) original manual.
+According to the [original](https://web.archive.org/web/20071026043648/http://www.nog.net/~tony/warez/hapesay.shtml) original manual.
 
 ```
-cowsay is a configurable talking cow, written in Perl. It operates
+hapesay is a configurable talking cow, written in Perl. It operates
 much as the figlet program does, and it written in the same spirit
 of silliness.
 ```
@@ -63,7 +63,7 @@ https://user-images.githubusercontent.com/6500104/140379043-53e44994-b1b0-442e-b
 
 ```
 cow{say,think} version 2.0.0, (c) 2021 codehex
-Usage: cowsay [-bdgpstwy] [-h] [-e eyes] [-f cowfile] [--random]
+Usage: hapesay [-bdgpstwy] [-h] [-e eyes] [-f cowfile] [--random]
       [-l] [-n] [-T tongue] [-W wrapcolumn]
       [--bold] [--rainbow] [--aurora] [--super] [message]
 
@@ -72,7 +72,7 @@ Repository: https://github.com/Rid/hapesay
 ```
 Normal
 ```
-$ cowsay Hello
+$ hapesay Hello
  _______
 < Hello >
  -------
@@ -84,7 +84,7 @@ $ cowsay Hello
 ```
 Borg mode
 ```
-$ cowsay -b Hello
+$ hapesay -b Hello
  _______
 < Hello >
  -------
@@ -103,14 +103,14 @@ package main
 import (
 	"fmt"
 
-	cowsay "github.com/Rid/hapesay/v2"
+	hapesay "github.com/Rid/hapesay/v2"
 )
 
 func main() {
-	say, err := cowsay.Say(
+	say, err := hapesay.Say(
 		"Hello",
-		cowsay.Type("default"),
-		cowsay.BallonWidth(40),
+		hapesay.Type("default"),
+		hapesay.BallonWidth(40),
 	)
 	if err != nil {
 		panic(err)
@@ -126,7 +126,7 @@ func main() {
 ### Mac and Linux users via Homebrew
 
     $ brew update
-    $ brew install Code-Hex/tap/neo-cowsay
+    $ brew install Code-Hex/tap/neo-hapesay
 
 ### Binary
 
@@ -138,9 +138,9 @@ You can download from [here](https://github.com/Rid/hapesay/releases)
 
 ### Go
 
-#### cowsay
+#### hapesay
 
-    $ go install github.com/Rid/hapesay/cmd/v2/cowsay@latest
+    $ go install github.com/Rid/hapesay/cmd/v2/hapesay@latest
 
 #### cowthink
 
@@ -149,14 +149,14 @@ You can download from [here](https://github.com/Rid/hapesay/releases)
 ## License
 
 <details>
-<summary>cowsay license</summary>
+<summary>hapesay license</summary>
 
 ```
 ==============
-cowsay License
+hapesay License
 ==============
 
-cowsay is distributed under the same licensing terms as Perl: the
+hapesay is distributed under the same licensing terms as Perl: the
 Artistic License or the GNU General Public License.  If you don't
 want to track down these licenses and read them for yourself, use
 the parts that I'd prefer:
@@ -169,20 +169,20 @@ other purpose.
 (2) If you have any bugfixes or suggestions, please notify me so
 that I may incorporate them.
 
-(3) If you try to make money off of cowsay, you suck.
+(3) If you try to make money off of hapesay, you suck.
 
 ===============
-cowsay Legalese
+hapesay Legalese
 ===============
 
 (0) Copyright (c) 1999 Tony Monroe.  All rights reserved.  All
 lefts may or may not be reversed at my discretion.
 
 (1) This software package can be freely redistributed or modified
-under the terms described above in the "cowsay License" section
+under the terms described above in the "hapesay License" section
 of this file.
 
-(2) cowsay is provided "as is," with no warranties whatsoever,
+(2) hapesay is provided "as is," with no warranties whatsoever,
 expressed or implied.  If you want some implied warranty about
 merchantability and/or fitness for a particular purpose, you will
 not find it here, because there is no such thing here.
@@ -195,5 +195,5 @@ not find it here, because there is no such thing here.
 (The Artistic License or The GNU General Public License)
 
 ## Author
-Neo Cowsay: [codehex](https://twitter.com/CodeHex)  
+Neo hapesay: [codehex](https://twitter.com/CodeHex)  
 Original: (c) 1999 Tony Monroe
