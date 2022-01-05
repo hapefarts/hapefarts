@@ -75,9 +75,9 @@ archives:
   - doc/hapesay.1
 
 brews:
-- name: neo-hapesay
+- name: hapesay
   tap:
-    owner: Code-Hex
+    owner: Rid
     name: homebrew-tap
     token: "{{ .Env.HOMEBREW_TAP_GITHUB_TOKEN }}"
   homepage: https://github.com/Rid/hapesay
@@ -90,7 +90,7 @@ brews:
 
 nfpms:
   - license: Artistic License 2.0
-    maintainer: Kei Kamikawa <x00.x7f.x86@gmail.com>
+    maintainer: Rid <rid@cylo.io>
     homepage: https://github.com/Rid/hapesay
     bindir: /usr/local/bin
     description: "Fast, funny, everyone wanted? new hapesay!!"

@@ -1,0 +1,223 @@
+project_name: hapesay
+release:
+  github:
+    owner: Rid
+    name: hapesay
+  name_template: '{{.Tag}}'
+brews:
+- name: neo-hapesay
+  tap:
+    owner: Code-Hex
+    name: homebrew-tap
+    token: '{{ .Env.HOMEBREW_TAP_GITHUB_TOKEN }}'
+  commit_author:
+    name: goreleaserbot
+    email: goreleaser@carlosbecker.com
+  commit_msg_template: Brew formula update for {{ .ProjectName }} version {{ .Tag
+    }}
+  folder: Formula
+  install: |
+    bin.install "hapesay"
+    bin.install "hapethink"
+    man1.install Dir["doc/hapesay.1"]
+  description: Fast, funny, everyone wanted? new hapesay!!
+  homepage: https://github.com/Rid/hapesay
+  goarm: "6"
+scoop:
+  name: hapesay
+  commit_author:
+    name: goreleaserbot
+    email: goreleaser@carlosbecker.com
+  commit_msg_template: Scoop update for {{ .ProjectName }} version {{ .Tag }}
+builds:
+- id: hapesay
+  goos:
+  - linux
+  - darwin
+  - windows
+  goarch:
+  - "386"
+  - amd64
+  - arm
+  - arm64
+  goarm:
+  - "6"
+  - "7"
+  gomips:
+  - hardfloat
+  targets:
+  - linux_386
+  - linux_amd64
+  - linux_arm_6
+  - linux_arm64
+  - darwin_amd64
+  - darwin_arm64
+  - windows_386
+  - windows_amd64
+  - windows_arm_6
+  - windows_arm64
+  ignore:
+  - goos: darwin
+    goarch: "386"
+  - goos: linux
+    goarch: arm
+    goarm: "7"
+  - goos: windows
+    goarch: arm
+    goarm: "7"
+  dir: cmd
+  main: ./hapesay/main.go
+  ldflags:
+  - -s -w -X main.version={{.Version}}
+  binary: hapesay
+  env:
+  - CGO_ENABLED=0
+  builder: go
+  gobinary: go
+- id: hapethink
+  goos:
+  - linux
+  - darwin
+  - windows
+  goarch:
+  - "386"
+  - amd64
+  - arm
+  - arm64
+  goarm:
+  - "6"
+  - "7"
+  gomips:
+  - hardfloat
+  targets:
+  - linux_386
+  - linux_amd64
+  - linux_arm_6
+  - linux_arm64
+  - darwin_amd64
+  - darwin_arm64
+  - windows_386
+  - windows_amd64
+  - windows_arm_6
+  - windows_arm64
+  ignore:
+  - goos: darwin
+    goarch: "386"
+  - goos: linux
+    goarch: arm
+    goarm: "7"
+  - goos: windows
+    goarch: arm
+    goarm: "7"
+  dir: cmd
+  main: ./hapethink/main.go
+  ldflags:
+  - -s -w -X main.version={{.Version}}
+  binary: hapethink
+  env:
+  - CGO_ENABLED=0
+  builder: go
+  gobinary: go
+archives:
+- id: default
+  builds:
+  - hapesay
+  - hapethink
+  name_template: hapesay_{{ .Version }}_{{ .Os }}_{{ .Arch }}
+  replacements:
+    "386": i386
+    amd64: x86_64
+    darwin: macOS
+    linux: Linux
+    windows: Windows
+  format: tar.gz
+  format_overrides:
+  - goos: windows
+    format: zip
+  files:
+  - src: LICENSE
+  - src: doc/hapesay.1
+nfpms:
+- file_name_template: '{{ .PackageName }}_{{ .Version }}_{{ .Os }}_{{ .Arch }}{{ if
+    .Arm }}v{{ .Arm }}{{ end }}{{ if .Mips }}_{{ .Mips }}{{ end }}'
+  package_name: hapesay
+  contents:
+  - src: doc/hapesay.1
+    dst: /usr/share/man/man1/hapesay.1
+  id: default
+  builds:
+  - hapesay
+  - hapethink
+  formats:
+  - apk
+  - deb
+  - rpm
+  homepage: https://github.com/Rid/hapesay
+  maintainer: Kei Kamikawa <x00.x7f.x86@gmail.com>
+  description: Fast, funny, everyone wanted? new hapesay!!
+  license: Artistic License 2.0
+  bindir: /usr/local/bin
+snapshot:
+  name_template: '{{ .Version }}-SNAPSHOT-{{ .ShortCommit }}'
+checksum:
+  name_template: hapesay_checksums.txt
+  algorithm: sha256
+changelog:
+  filters:
+    exclude:
+    - '^docs:'
+    - '^test:'
+    - Merge pull request
+    - Merge branch
+  sort: asc
+dist: dist
+env_files:
+  github_token: ~/.config/goreleaser/github_token
+  gitlab_token: ~/.config/goreleaser/gitlab_token
+  gitea_token: ~/.config/goreleaser/gitea_token
+source:
+  name_template: '{{ .ProjectName }}-{{ .Version }}'
+  format: tar.gz
+gomod:
+  gobinary: go
+announce:
+  twitter:
+    message_template: '{{ .ProjectName }} {{ .Tag }} is out! Check it out at {{ .ReleaseURL
+      }}'
+  reddit:
+    title_template: '{{ .ProjectName }} {{ .Tag }} is out!'
+    url_template: '{{ .ReleaseURL }}'
+  slack:
+    message_template: '{{ .ProjectName }} {{ .Tag }} is out! Check it out at {{ .ReleaseURL
+      }}'
+    username: GoReleaser
+  discord:
+    message_template: '{{ .ProjectName }} {{ .Tag }} is out! Check it out at {{ .ReleaseURL
+      }}'
+    author: GoReleaser
+    color: "3888754"
+    icon_url: https://goreleaser.com/static/avatar.png
+  teams:
+    title_template: '{{ .ProjectName }} {{ .Tag }} is out!'
+    message_template: '{{ .ProjectName }} {{ .Tag }} is out! Check it out at {{ .ReleaseURL
+      }}'
+    color: '#2D313E'
+    icon_url: https://goreleaser.com/static/avatar.png
+  smtp:
+    subject_template: '{{ .ProjectName }} {{ .Tag }} is out!'
+    body_template: 'You can view details from: {{ .ReleaseURL }}'
+  mattermost:
+    message_template: '{{ .ProjectName }} {{ .Tag }} is out! Check it out at {{ .ReleaseURL
+      }}'
+    title_template: '{{ .ProjectName }} {{ .Tag }} is out!'
+    username: GoReleaser
+  linkedin:
+    message_template: '{{ .ProjectName }} {{ .Tag }} is out! Check it out at {{ .ReleaseURL
+      }}'
+  telegram:
+    message_template: '{{ .ProjectName }} {{ .Tag }} is out! Check it out at {{ .ReleaseURL
+      }}'
+github_urls:
+  download: https://github.com
+gitlab_urls:
+  download: https://gitlab.com
