@@ -81,14 +81,14 @@ func (c *CowFile) ReadAll() ([]byte, error) {
 	return ioutil.ReadFile(joinedPath)
 }
 
-// Cows to get list of cows
+// Cows to get list of hapes
 func Cows() ([]*CowPath, error) {
 	cowPaths, err := cowsFromCowPath()
 	if err != nil {
 		return nil, err
 	}
 	cowPaths = append(cowPaths, &CowPath{
-		Name:         "cows",
+		Name:         "hapes",
 		CowFiles:     CowsInBinary(),
 		LocationType: InBinary,
 	})

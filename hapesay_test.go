@@ -27,7 +27,7 @@ func TestCows(t *testing.T) {
 		}
 
 		wantCowPath := &CowPath{
-			Name:         "cows",
+			Name:         "hapes",
 			LocationType: InBinary,
 		}
 		if diff := cmp.Diff(wantCowPath, cowPath,
@@ -57,7 +57,7 @@ func TestCows(t *testing.T) {
 				LocationType: InDirectory,
 			},
 			{
-				Name:         "cows",
+				Name:         "hapes",
 				LocationType: InBinary,
 			},
 		}
@@ -141,7 +141,7 @@ func TestCowFile_ReadAll(t *testing.T) {
 
 	fromBinary := &CowFile{
 		Name:         "default",
-		BasePath:     "cows",
+		BasePath:     "hapes",
 		LocationType: InBinary,
 	}
 	fromBinaryContent, err := fromBinary.ReadAll()
