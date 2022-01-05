@@ -2,7 +2,7 @@
 ## Hape
 ##
 ##
-$the_cow = <<EOC;
+$the_hape = <<EOH;
                                                                   $thoughts
                                                                  $thoughts
                                                                 $thoughts
@@ -11,8 +11,8 @@ $the_cow = <<EOC;
                            P ,    ^      ,^              T
                           [ ,  ,-     _=`       ,=^JJJ,,7,'_
                           ] L       ,^     __-,m^   _   _ T/
-                           %L L-^--C   _,="  A   ,^  ! |  w p
-                            ]^ /^""w`/`    ,E   {L____][w__A m
+                           %L L-^--C   _,="  A   ,^AA! |AAw p
+                            ]^ /^""w`/`    ,E   {LMMMA][wMMA m
                             " P   ,  ]     P   |"  oo [ [ oo ]b
                            L |   _'m'F     V    '""Jw<-"`Yp?"''L
                              ]  {  [@]      `"=w,A /^"""<   _,J]y
@@ -36,4 +36,4 @@ $the_cow = <<EOC;
                     _.^                       "w^w        /%b   "w_
                     Rid
 
-EOC
+EOH

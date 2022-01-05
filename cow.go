@@ -156,7 +156,7 @@ func Thoughts(thoughts rune) Option {
 	}
 }
 
-// Random specifies something .cow from cows directory
+// Random specifies something .hape from cows directory
 func Random() Option {
 	pick, err := pickCow()
 	return func(c *Cow) error {

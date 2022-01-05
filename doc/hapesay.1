@@ -101,14 +101,14 @@ A cowfile is made up of a simple block of \fBperl(1)\fP code, which assigns a pi
 Should you wish to customize the eyes or the tongue of the cow,
 then the variables \fB$eyes\fP and \fB$tongue\fP may be used. The trail leading up to the cow\(cqs message balloon is
 composed of the character(s) in the \fB$thoughts\fP variable. Any backslashes must be reduplicated to prevent interpolation.
-The name of a cowfile should end with \fB.cow ,\fP otherwise it is assumed not to be a cowfile. Also, at\-signs (\(lq@\(rq)
+The name of a cowfile should end with \fB.hape ,\fP otherwise it is assumed not to be a cowfile. Also, at\-signs (\(lq@\(rq)
 must be backslashed because that is what Perl 5 expects.
 .SH "ENVIRONMENT"
 .sp
 The COWPATH environment variable, if present, will be used to search
 for cowfiles.  It contains a colon\-separated list of directories,
 much like \fBPATH or MANPATH\fP. It should always contain the \fB/usr/local/share/cows\fP
-directory, or at least a directory with a file called \fBdefault.cow\fP in it.
+directory, or at least a directory with a file called \fBdefault.hape\fP in it.
 .SH "FILES"
 .sp
 \fB%PREFIX%/share/cows\fP holds a sample set of cowfiles. If your \fBCOWPATH\fP is not explicitly set, it automatically contains this directory.

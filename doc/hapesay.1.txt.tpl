@@ -79,7 +79,7 @@ A cowfile is made up of a simple block of *perl(1)* code, which assigns a pictur
 Should you wish to customize the eyes or the tongue of the cow,
 then the variables *$eyes* and *$tongue* may be used. The trail leading up to the cow's message balloon is
 composed of the character(s) in the *$thoughts* variable. Any backslashes must be reduplicated to prevent interpolation.
-The name of a cowfile should end with *.cow ,* otherwise it is assumed not to be a cowfile. Also, at-signs (``@'')
+The name of a cowfile should end with *.hape ,* otherwise it is assumed not to be a cowfile. Also, at-signs (``@'')
 must be backslashed because that is what Perl 5 expects.
 
 ENVIRONMENT
@@ -87,7 +87,7 @@ ENVIRONMENT
 The COWPATH environment variable, if present, will be used to search
 for cowfiles.  It contains a colon-separated list of directories,
 much like *PATH or MANPATH*. It should always contain the */usr/local/share/cows*
-directory, or at least a directory with a file called *default.cow* in it.
+directory, or at least a directory with a file called *default.hape* in it.
 
 FILES
 -----

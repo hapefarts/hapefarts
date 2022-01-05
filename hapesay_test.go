@@ -180,7 +180,7 @@ func TestSay(t *testing.T) {
 			args: args{
 				phrase: "hello!",
 			},
-			wantFile: "default.cow",
+			wantFile: "default.hape",
 			wantErr:  false,
 		},
 		{
@@ -191,7 +191,7 @@ func TestSay(t *testing.T) {
 					DisableWordWrap(),
 				},
 			},
-			wantFile: "nest.cow",
+			wantFile: "nest.hape",
 			wantErr:  false,
 		},
 		{

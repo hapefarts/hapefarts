@@ -1,7 +1,7 @@
-$the_cow = <<EOC;
+$the_hape = <<EOH;
         $thoughts   ^__^
          $thoughts  ($eyes)\\_______
             (__)\\       )\\/\\
              $tongue ||----w |
                 ||     ||
-EOC
+EOH

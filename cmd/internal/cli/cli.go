@@ -144,7 +144,7 @@ func (c *CLI) parseOptions(opts *options, argv []string) ([]string, error) {
 
 func (c *CLI) usage() []byte {
 	year := strconv.Itoa(time.Now().Year())
-	return []byte(c.program() + ` version ` + c.Version + `, (c) ` + year + ` codehex
+	return []byte(c.program() + ` version ` + c.Version + `, (c) ` + year + ` codehex + Rid
 Usage: ` + c.program() + ` [-bdgpstwy] [-h] [-e eyes] [-f cowfile] [--random]
           [-l] [-n] [-T tongue] [-W wrapcolumn]
           [--bold] [--rainbow] [--aurora] [--super] [message]
@@ -222,7 +222,7 @@ func (c *CLI) mowmow(opts *options, args []string) error {
 	if err != nil {
 		var notfound *hapesay.NotFound
 		if errors.As(err, &notfound) {
-			return fmt.Errorf("could not find %s cowfile", notfound.Cowfile)
+			return fmt.Errorf("could not find %s hapefile", notfound.Cowfile)
 		}
 		return err
 	}

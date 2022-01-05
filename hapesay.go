@@ -39,7 +39,7 @@ type CowPath struct {
 	// Name is name of the COWPATH.
 	// If you specified `COWPATH=/foo/bar`, Name is `/foo/bar`.
 	Name string
-	// CowFiles are name of the cowfile which are trimmed ".cow" suffix.
+	// CowFiles are name of the cowfile which are trimmed ".hape" suffix.
 	CowFiles []string
 	// LocationType is the type of COWPATH
 	LocationType LocationType
@@ -74,7 +74,7 @@ type CowFile struct {
 // If LocationType is InBinary, the file read from binary.
 // otherwise reads from file system.
 func (c *CowFile) ReadAll() ([]byte, error) {
-	joinedPath := filepath.Join(c.BasePath, c.Name+".cow")
+	joinedPath := filepath.Join(c.BasePath, c.Name+".hape")
 	if c.LocationType == InBinary {
 		return Asset(joinedPath)
 	}
@@ -97,7 +97,7 @@ func Cows() ([]*CowPath, error) {
 
 func cowsFromCowPath() ([]*CowPath, error) {
 	cowPaths := make([]*CowPath, 0)
-	cowPath := os.Getenv("COWPATH")
+	cowPath := os.Getenv("HAPEPATH")
 	if cowPath == "" {
 		return cowPaths, nil
 	}
@@ -114,8 +114,8 @@ func cowsFromCowPath() ([]*CowPath, error) {
 		}
 		for _, entry := range dirEntries {
 			name := entry.Name()
-			if strings.HasSuffix(name, ".cow") {
-				name = strings.TrimSuffix(name, ".cow")
+			if strings.HasSuffix(name, ".hape") {
+				name = strings.TrimSuffix(name, ".hape")
 				path.CowFiles = append(path.CowFiles, name)
 			}
 		}
@@ -147,11 +147,11 @@ func (cow *Cow) GetCow() (string, error) {
 	separate := strings.Split(newsrc, "\n")
 	mow := make([]string, 0, len(separate))
 	for _, line := range separate {
-		if strings.Contains(line, "$the_cow = <<EOC") || strings.HasPrefix(line, "##") {
+		if strings.Contains(line, "$the_hape = <<EOH") || strings.HasPrefix(line, "##") {
 			continue
 		}
 
-		if strings.HasPrefix(line, "EOC") {
+		if strings.HasPrefix(line, "EOH") {
 			break
 		}
 
