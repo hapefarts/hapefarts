@@ -2,9 +2,9 @@
 
 Neo Cowsay is written in Go. This cowsay is extended the original cowsay. added fun more options, and you can be used as a library.
 
-for GitHub Actions users: [Code-Hex/neo-cowsay-action](https://github.com/marketplace/actions/neo-cowsay)
+for GitHub Actions users: [Rid/hapesay-action](https://github.com/marketplace/actions/neo-cowsay)
 
-[![Go Reference](https://pkg.go.dev/badge/github.com/Code-Hex/Neo-cowsay/v2.svg)](https://pkg.go.dev/github.com/Code-Hex/Neo-cowsay/v2) [![.github/workflows/main.yml](https://github.com/Code-Hex/Neo-cowsay/actions/workflows/main.yml/badge.svg)](https://github.com/Code-Hex/Neo-cowsay/actions/workflows/main.yml) [![Go Report Card](https://goreportcard.com/badge/github.com/Code-Hex/Neo-cowsay)](https://goreportcard.com/report/github.com/Code-Hex/Neo-cowsay) [![codecov](https://codecov.io/gh/Code-Hex/Neo-cowsay/branch/master/graph/badge.svg?token=WwjmyHrOPv)](https://codecov.io/gh/Code-Hex/Neo-cowsay)
+[![Go Reference](https://pkg.go.dev/badge/github.com/Rid/hapesay/v2.svg)](https://pkg.go.dev/github.com/Rid/hapesay/v2) [![.github/workflows/main.yml](https://github.com/Rid/hapesay/actions/workflows/main.yml/badge.svg)](https://github.com/Rid/hapesay/actions/workflows/main.yml) [![Go Report Card](https://goreportcard.com/badge/github.com/Rid/hapesay)](https://goreportcard.com/report/github.com/Rid/hapesay) [![codecov](https://codecov.io/gh/Rid/hapesay/branch/master/graph/badge.svg?token=WwjmyHrOPv)](https://codecov.io/gh/Rid/hapesay)
 
 ```
  ______________
@@ -27,7 +27,7 @@ much as the figlet program does, and it written in the same spirit
 of silliness.
 ```
 
-This is also supported `COWPATH` env. Please read more details in [#33](https://github.com/Code-Hex/Neo-cowsay/pull/33) if you want to use this.
+This is also supported `COWPATH` env. Please read more details in [#33](https://github.com/Rid/hapesay/pull/33) if you want to use this.
 
 ## What makes it different from the original?
 
@@ -36,7 +36,7 @@ This is also supported `COWPATH` env. Please read more details in [#33](https://
 - new some cowfiles is added
 - cowfiles in binary
 - random pickup cowfile option
-- provides command-line fuzzy finder to search any cows with `-f -` [#39](https://github.com/Code-Hex/Neo-cowsay/pull/39)
+- provides command-line fuzzy finder to search any cows with `-f -` [#39](https://github.com/Rid/hapesay/pull/39)
 - coloring filter options
 - super mode
 
@@ -68,7 +68,7 @@ Usage: cowsay [-bdgpstwy] [-h] [-e eyes] [-f cowfile] [--random]
       [--bold] [--rainbow] [--aurora] [--super] [message]
 
 Original Author: (c) 1999 Tony Monroe
-Repository: https://github.com/Code-Hex/Neo-cowsay
+Repository: https://github.com/Rid/hapesay
 ```
 Normal
 ```
@@ -103,7 +103,7 @@ package main
 import (
 	"fmt"
 
-	cowsay "github.com/Code-Hex/Neo-cowsay/v2"
+	cowsay "github.com/Rid/hapesay/v2"
 )
 
 func main() {
@@ -119,7 +119,7 @@ func main() {
 }
 ```
 
-[Examples](https://github.com/Code-Hex/Neo-cowsay/blob/master/examples) or [GoDoc](https://pkg.go.dev/github.com/Code-Hex/Neo-cowsay/v2)
+[Examples](https://github.com/Rid/hapesay/blob/master/examples) or [GoDoc](https://pkg.go.dev/github.com/Rid/hapesay/v2)
 
 ## Install
 
@@ -130,21 +130,21 @@ func main() {
 
 ### Binary
 
-You can download from [here](https://github.com/Code-Hex/Neo-cowsay/releases)
+You can download from [here](https://github.com/Rid/hapesay/releases)
 
 ### library
 
-    $ go get github.com/Code-Hex/Neo-cowsay/v2
+    $ go get github.com/Rid/hapesay/v2
 
 ### Go
 
 #### cowsay
 
-    $ go install github.com/Code-Hex/Neo-cowsay/cmd/v2/cowsay@latest
+    $ go install github.com/Rid/hapesay/cmd/v2/cowsay@latest
 
 #### cowthink
 
-    $ go install github.com/Code-Hex/Neo-cowsay/cmd/v2/cowthink@latest
+    $ go install github.com/Rid/hapesay/cmd/v2/cowthink@latest
 
 ## License
 

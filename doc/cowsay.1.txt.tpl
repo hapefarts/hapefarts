@@ -95,7 +95,7 @@ FILES
 
 BUGS
 ----
-https://github.com/Code-Hex/Neo-cowsay
+https://github.com/Rid/hapesay
 
 If there are any, please report bugs and feature requests in the issue tracker.
 Please do your best to provide a reproducible test case for bugs. This should

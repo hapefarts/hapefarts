@@ -10,7 +10,7 @@ import (
 	"strings"
 	"time"
 
-	cowsay "github.com/Code-Hex/Neo-cowsay/v2"
+	cowsay "github.com/Rid/hapesay/v2"
 )
 
 const limit = 1000

@@ -1,4 +1,4 @@
-module github.com/Code-Hex/Neo-cowsay/v2
+module github.com/Rid/hapesay/v2
 
 require (
 	github.com/Code-Hex/go-wordwrap v1.0.0
