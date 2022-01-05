@@ -9,41 +9,41 @@ import (
 	"github.com/google/go-cmp/cmp/cmpopts"
 )
 
-func TestCow_Clone(t *testing.T) {
+func TestHape_Clone(t *testing.T) {
 	tests := []struct {
 		name string
 		opts []Option
-		from *Cow
-		want *Cow
+		from *Hape
+		want *Hape
 	}{
 		{
 			name: "without options",
 			opts: []Option{},
-			from: func() *Cow {
-				cow, _ := New()
-				return cow
+			from: func() *Hape {
+				hape, _ := New()
+				return hape
 			}(),
-			want: func() *Cow {
-				cow, _ := New()
-				return cow
+			want: func() *Hape {
+				hape, _ := New()
+				return hape
 			}(),
 		},
 		{
 			name: "with some options",
 			opts: []Option{},
-			from: func() *Cow {
-				cow, _ := New(
+			from: func() *Hape {
+				hape, _ := New(
 					Type("docker"),
 					BallonWidth(60),
 				)
-				return cow
+				return hape
 			}(),
-			want: func() *Cow {
-				cow, _ := New(
+			want: func() *Hape {
+				hape, _ := New(
 					Type("docker"),
 					BallonWidth(60),
 				)
-				return cow
+				return hape
 			}(),
 		},
 		{
@@ -52,21 +52,21 @@ func TestCow_Clone(t *testing.T) {
 				Thinking(),
 				Thoughts('o'),
 			},
-			from: func() *Cow {
-				cow, _ := New(
+			from: func() *Hape {
+				hape, _ := New(
 					Type("docker"),
 					BallonWidth(60),
 				)
-				return cow
+				return hape
 			}(),
-			want: func() *Cow {
-				cow, _ := New(
+			want: func() *Hape {
+				hape, _ := New(
 					Type("docker"),
 					BallonWidth(60),
 					Thinking(),
 					Thoughts('o'),
 				)
-				return cow
+				return hape
 			}(),
 		},
 	}
@@ -77,15 +77,15 @@ func TestCow_Clone(t *testing.T) {
 				t.Fatal(err)
 			}
 			if diff := cmp.Diff(tt.want, got,
-				cmp.AllowUnexported(Cow{}),
-				cmpopts.IgnoreFields(Cow{}, "buf")); diff != "" {
+				cmp.AllowUnexported(Hape{}),
+				cmpopts.IgnoreFields(Hape{}, "buf")); diff != "" {
 				t.Errorf("(-want, +got)\n%s", diff)
 			}
 		})
 	}
 
 	t.Run("random", func(t *testing.T) {
-		cow, _ := New(
+		hape, _ := New(
 			Type(""),
 			Thinking(),
 			Thoughts('o'),
@@ -94,23 +94,23 @@ func TestCow_Clone(t *testing.T) {
 			Random(),
 		)
 
-		cloned, _ := cow.Clone()
+		cloned, _ := hape.Clone()
 
-		if diff := cmp.Diff(cow, cloned,
-			cmp.AllowUnexported(Cow{}),
-			cmpopts.IgnoreFields(Cow{}, "buf")); diff != "" {
+		if diff := cmp.Diff(hape, cloned,
+			cmp.AllowUnexported(Hape{}),
+			cmpopts.IgnoreFields(Hape{}, "buf")); diff != "" {
 			t.Errorf("(-want, +got)\n%s", diff)
 		}
 	})
 
 	t.Run("error", func(t *testing.T) {
-		cow, err := New()
+		hape, err := New()
 		if err != nil {
 			t.Fatal(err)
 		}
 
 		wantErr := errors.New("error")
-		_, err = cow.Clone(func(*Cow) error {
+		_, err = hape.Clone(func(*Hape) error {
 			return wantErr
 		})
 		if wantErr != err {
@@ -158,9 +158,9 @@ func Test_adjustTo2Chars(t *testing.T) {
 func TestNotFound_Error(t *testing.T) {
 	file := "test"
 	n := &NotFound{
-		Cowfile: file,
+		Hapefile: file,
 	}
-	want := fmt.Sprintf("not found %q cowfile", file)
+	want := fmt.Sprintf("not found %q hapefile", file)
 	if want != n.Error() {
 		t.Fatalf("want %q but got %q", want, n.Error())
 	}

@@ -8,7 +8,7 @@ for GitHub Actions users: [Rid/hapesay-action](https://github.com/marketplace/ac
 
 ```
  ______________
-< I'm Neo cows >
+< I'm Neo hapes >
  --------------
        \   ^__^
         \  (oo)\_______
@@ -22,7 +22,7 @@ for GitHub Actions users: [Rid/hapesay-action](https://github.com/marketplace/ac
 According to the [original](https://web.archive.org/web/20071026043648/http://www.nog.net/~tony/warez/hapesay.shtml) original manual.
 
 ```
-hapesay is a configurable talking cow, written in Perl. It operates
+hapesay is a configurable talking hape, written in Perl. It operates
 much as the figlet program does, and it written in the same spirit
 of silliness.
 ```
@@ -33,10 +33,10 @@ This is also supported `COWPATH` env. Please read more details in [#33](https://
 
 - fast
 - utf8 is supported
-- new some cowfiles is added
-- cowfiles in binary
-- random pickup cowfile option
-- provides command-line fuzzy finder to search any cows with `-f -` [#39](https://github.com/Rid/hapesay/pull/39)
+- new some hapefiles is added
+- hapefiles in binary
+- random pickup hapefile option
+- provides command-line fuzzy finder to search any hapes with `-f -` [#39](https://github.com/Rid/hapesay/pull/39)
 - coloring filter options
 - super mode
 
@@ -51,7 +51,7 @@ This is also supported `COWPATH` env. Please read more details in [#33](https://
 
 [![asciicast](https://asciinema.org/a/228213.svg)](https://asciinema.org/a/228213)
 
-## And, Super Cows mode
+## And, Super Hapes mode
 
 https://user-images.githubusercontent.com/6500104/140379043-53e44994-b1b0-442e-bda7-4f7ab3aedf01.mov
 
@@ -62,8 +62,8 @@ https://user-images.githubusercontent.com/6500104/140379043-53e44994-b1b0-442e-b
 ### As command
 
 ```
-cow{say,think} version 2.0.0, (c) 2021 codehex
-Usage: hapesay [-bdgpstwy] [-h] [-e eyes] [-f cowfile] [--random]
+hape{say,think} version 2.0.0, (c) 2021 codehex
+Usage: hapesay [-bdgpstwy] [-h] [-e eyes] [-f hapefile] [--random]
       [-l] [-n] [-T tongue] [-W wrapcolumn]
       [--bold] [--rainbow] [--aurora] [--super] [message]
 
@@ -142,9 +142,9 @@ You can download from [here](https://github.com/Rid/hapesay/releases)
 
     $ go install github.com/Rid/hapesay/cmd/v2/hapesay@latest
 
-#### cowthink
+#### hapethink
 
-    $ go install github.com/Rid/hapesay/cmd/v2/cowthink@latest
+    $ go install github.com/Rid/hapesay/cmd/v2/hapethink@latest
 
 ## License
 

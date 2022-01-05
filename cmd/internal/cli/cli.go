@@ -72,7 +72,7 @@ type CLI struct {
 
 func (c *CLI) program() string {
 	if c.Thinking {
-		return "cowthink"
+		return "hapethink"
 	}
 	return "hapesay"
 }
@@ -104,17 +104,17 @@ func (c *CLI) mow(argv []string) error {
 	}
 
 	if opts.List {
-		cowPaths, err := hapesay.Cows()
+		hapePaths, err := hapesay.Hapes()
 		if err != nil {
 			return err
 		}
-		for _, cowPath := range cowPaths {
-			if cowPath.LocationType == hapesay.InBinary {
-				fmt.Fprintf(c.stdout, "Cow files in binary:\n")
+		for _, hapePath := range hapePaths {
+			if hapePath.LocationType == hapesay.InBinary {
+				fmt.Fprintf(c.stdout, "Hape files in binary:\n")
 			} else {
-				fmt.Fprintf(c.stdout, "Cow files in %s:\n", cowPath.Name)
+				fmt.Fprintf(c.stdout, "Hape files in %s:\n", hapePath.Name)
 			}
-			fmt.Fprintln(c.stdout, wordwrap.WrapString(strings.Join(cowPath.CowFiles, " "), 80))
+			fmt.Fprintln(c.stdout, wordwrap.WrapString(strings.Join(hapePath.HapeFiles, " "), 80))
 			fmt.Fprintln(c.stdout)
 		}
 		return nil
@@ -145,7 +145,7 @@ func (c *CLI) parseOptions(opts *options, argv []string) ([]string, error) {
 func (c *CLI) usage() []byte {
 	year := strconv.Itoa(time.Now().Year())
 	return []byte(c.program() + ` version ` + c.Version + `, (c) ` + year + ` codehex + Rid
-Usage: ` + c.program() + ` [-bdgpstwy] [-h] [-e eyes] [-f cowfile] [--random]
+Usage: ` + c.program() + ` [-bdgpstwy] [-h] [-e eyes] [-f hapefile] [--random]
           [-l] [-n] [-T tongue] [-W wrapcolumn]
           [--bold] [--rainbow] [--aurora] [--super] [message]
 
@@ -156,11 +156,11 @@ Original Author: (c) 1999 Tony Monroe
 func (c *CLI) generateOptions(opts *options) []hapesay.Option {
 	o := make([]hapesay.Option, 0, 8)
 	if opts.File == "-" {
-		cows := cowList()
-		idx, _ := fuzzyfinder.Find(cows, func(i int) string {
-			return cows[i]
+		hapes := hapeList()
+		idx, _ := fuzzyfinder.Find(hapes, func(i int) string {
+			return hapes[i]
 		})
-		opts.File = cows[idx]
+		opts.File = hapes[idx]
 	}
 	o = append(o, hapesay.Type(opts.File))
 	if c.Thinking {
@@ -187,14 +187,14 @@ func (c *CLI) generateOptions(opts *options) []hapesay.Option {
 	return selectFace(opts, o)
 }
 
-func cowList() []string {
-	cows, err := hapesay.Cows()
+func hapeList() []string {
+	hapes, err := hapesay.Hapes()
 	if err != nil {
-		return hapesay.CowsInBinary()
+		return hapesay.HapesInBinary()
 	}
 	list := make([]string, 0)
-	for _, cow := range cows {
-		list = append(list, cow.CowFiles...)
+	for _, hape := range hapes {
+		list = append(list, hape.HapeFiles...)
 	}
 	return list
 }
@@ -215,14 +215,14 @@ func (c *CLI) mowmow(opts *options, args []string) error {
 	phrase := c.phrase(opts, args)
 	o := c.generateOptions(opts)
 	if opts.Super {
-		return super.RunSuperCow(phrase, opts.Bold, o...)
+		return super.RunSuperHape(phrase, opts.Bold, o...)
 	}
 
 	say, err := hapesay.Say(phrase, o...)
 	if err != nil {
 		var notfound *hapesay.NotFound
 		if errors.As(err, &notfound) {
-			return fmt.Errorf("could not find %s hapefile", notfound.Cowfile)
+			return fmt.Errorf("could not find %s hapefile", notfound.Hapefile)
 		}
 		return err
 	}

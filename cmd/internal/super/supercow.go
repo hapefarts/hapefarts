@@ -16,52 +16,52 @@ import (
 	"github.com/rivo/uniseg"
 )
 
-func getNoSaidCow(cow *hapesay.Cow, opts ...hapesay.Option) (string, error) {
+func getNoSaidHape(hape *hapesay.Hape, opts ...hapesay.Option) (string, error) {
 	opts = append(opts, hapesay.Thoughts(' '))
-	cow, err := cow.Clone(opts...)
+	hape, err := hape.Clone(opts...)
 	if err != nil {
 		return "", err
 	}
-	return cow.GetCow()
+	return hape.GetHape()
 }
 
-// RunSuperCow runs super cow mode animation on the your terminal
-func RunSuperCow(phrase string, withBold bool, opts ...hapesay.Option) error {
-	cow, err := hapesay.New(opts...)
+// RunSuperHape runs super hape mode animation on the your terminal
+func RunSuperHape(phrase string, withBold bool, opts ...hapesay.Option) error {
+	hape, err := hapesay.New(opts...)
 	if err != nil {
 		return err
 	}
-	balloon := cow.Balloon(phrase)
+	balloon := hape.Balloon(phrase)
 	blank := createBlankSpace(balloon)
 
-	said, err := cow.GetCow()
+	said, err := hape.GetHape()
 	if err != nil {
 		return err
 	}
 
-	notSaid, err := getNoSaidCow(cow, opts...)
+	notSaid, err := getNoSaidHape(hape, opts...)
 	if err != nil {
 		return err
 	}
 
-	saidCow := balloon + said
-	saidCowLines := strings.Count(saidCow, "\n") + 1
+	saidHape := balloon + said
+	saidHapeLines := strings.Count(saidHape, "\n") + 1
 
 	// When it is higher than the height of the terminal
 	h := screen.Height()
-	if saidCowLines > h {
+	if saidHapeLines > h {
 		return errors.New("too height messages")
 	}
 
-	notSaidCow := blank + notSaid
+	notSaidHape := blank + notSaid
 
-	renderer := newRenderer(saidCow, notSaidCow)
+	renderer := newRenderer(saidHape, notSaidHape)
 
 	screen.SaveState()
 	screen.HideCursor()
 	screen.Clear()
 
-	go renderer.createFrames(cow, withBold)
+	go renderer.createFrames(hape, withBold)
 
 	renderer.render()
 
@@ -80,9 +80,9 @@ func createBlankSpace(balloon string) string {
 	return buf.String()
 }
 
-func maxLen(cow []string) int {
+func maxLen(hape []string) int {
 	max := 0
-	for _, line := range cow {
+	for _, line := range hape {
 		l := runewidth.StringWidth(line)
 		if max < l {
 			max = l
@@ -91,37 +91,37 @@ func maxLen(cow []string) int {
 	return max
 }
 
-type cowLine struct {
+type hapeLine struct {
 	raw      string
 	clusters []rune
 }
 
-func (c *cowLine) Len() int {
+func (c *hapeLine) Len() int {
 	return len(c.clusters)
 }
 
-func (c *cowLine) Slice(i, j int) string {
+func (c *hapeLine) Slice(i, j int) string {
 	if c.Len() == 0 {
 		return ""
 	}
 	return string(c.clusters[i:j])
 }
 
-func makeCowLines(cow string) []*cowLine {
-	sep := strings.Split(cow, "\n")
-	cowLines := make([]*cowLine, len(sep))
+func makeHapeLines(hape string) []*hapeLine {
+	sep := strings.Split(hape, "\n")
+	hapeLines := make([]*hapeLine, len(sep))
 	for i, line := range sep {
 		g := uniseg.NewGraphemes(line)
 		clusters := make([]rune, 0)
 		for g.Next() {
 			clusters = append(clusters, g.Runes()...)
 		}
-		cowLines[i] = &cowLine{
+		hapeLines[i] = &hapeLine{
 			raw:      line,
 			clusters: clusters,
 		}
 	}
-	return cowLines
+	return hapeLines
 }
 
 type renderer struct {
@@ -131,16 +131,16 @@ type renderer struct {
 	heightDiff  int
 	frames      chan string
 
-	saidCow         string
-	notSaidCowLines []*cowLine
+	saidHape         string
+	notSaidHapeLines []*hapeLine
 
 	quit chan os.Signal
 }
 
-func newRenderer(saidCow, notSaidCow string) *renderer {
-	notSaidCowSep := strings.Split(notSaidCow, "\n")
-	w, cowsWidth := screen.Width(), maxLen(notSaidCowSep)
-	max := w + cowsWidth
+func newRenderer(saidHape, notSaidHape string) *renderer {
+	notSaidHapeSep := strings.Split(notSaidHape, "\n")
+	w, hapesWidth := screen.Width(), maxLen(notSaidHapeSep)
+	max := w + hapesWidth
 
 	quit := make(chan os.Signal, 1)
 	signal.Notify(quit, syscall.SIGINT, syscall.SIGTERM, syscall.SIGHUP)
@@ -149,10 +149,10 @@ func newRenderer(saidCow, notSaidCow string) *renderer {
 		max:             max,
 		middle:          max / 2,
 		screenWidth:     w,
-		heightDiff:      screen.Height() - strings.Count(saidCow, "\n") - 1,
+		heightDiff:      screen.Height() - strings.Count(saidHape, "\n") - 1,
 		frames:          make(chan string, max),
-		saidCow:         saidCow,
-		notSaidCowLines: makeCowLines(notSaidCow),
+		saidHape:         saidHape,
+		notSaidHapeLines: makeHapeLines(notSaidHape),
 		quit:            quit,
 	}
 }
@@ -165,7 +165,7 @@ const (
 	standup = 3 * time.Second
 )
 
-func (r *renderer) createFrames(cow *hapesay.Cow, withBold bool) {
+func (r *renderer) createFrames(hape *hapesay.Hape, withBold bool) {
 	const times = standup / span
 	w := r.newWriter(withBold)
 
@@ -174,9 +174,9 @@ func (r *renderer) createFrames(cow *hapesay.Cow, withBold bool) {
 			w.SetPosx(r.posX(i))
 			for k := 0; k < int(times); k++ {
 				base := x * 70
-				// draw colored cow
+				// draw colored hape
 				w.SetColorSeq(base)
-				w.WriteString(r.saidCow)
+				w.WriteString(r.saidHape)
 				r.frames <- w.String()
 				if k%magic == 0 {
 					x++
@@ -187,7 +187,7 @@ func (r *renderer) createFrames(cow *hapesay.Cow, withBold bool) {
 			w.SetPosx(r.posX(i))
 			w.SetColorSeq(base)
 
-			for _, line := range r.notSaidCowLines {
+			for _, line := range r.notSaidHapeLines {
 				if i > r.screenWidth {
 					// Left side animations
 					n := i - r.screenWidth

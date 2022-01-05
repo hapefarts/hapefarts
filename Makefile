@@ -1,13 +1,13 @@
 .PHONY: build
-build: build/hapesay build/cowthink
+build: build/hapesay build/hapethink
 
 .PHONY: build/hapesay
 build/hapesay:
 	CGO_ENABLED=0 cd cmd && go build -o ../bin/hapesay -ldflags "-w -s" ./hapesay
 
-.PHONY: build/cowthink
-build/cowthink:
-	CGO_ENABLED=0 cd cmd && go build -o ../bin/cowthink -ldflags "-w -s" ./cowthink
+.PHONY: build/hapethink
+build/hapethink:
+	CGO_ENABLED=0 cd cmd && go build -o ../bin/hapethink -ldflags "-w -s" ./hapethink
 
 .PHONY: lint
 lint:

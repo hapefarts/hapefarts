@@ -12,46 +12,46 @@ import (
 	"github.com/google/go-cmp/cmp/cmpopts"
 )
 
-func TestCows(t *testing.T) {
+func TestHapes(t *testing.T) {
 	t.Run("no set COWPATH env", func(t *testing.T) {
-		cowPaths, err := Cows()
+		hapePaths, err := Hapes()
 		if err != nil {
 			t.Fatal(err)
 		}
-		if len(cowPaths) != 1 {
-			t.Fatalf("want 1, but got %d", len(cowPaths))
+		if len(hapePaths) != 1 {
+			t.Fatalf("want 1, but got %d", len(hapePaths))
 		}
-		cowPath := cowPaths[0]
-		if len(cowPath.CowFiles) == 0 {
-			t.Fatalf("no cowfiles")
+		hapePath := hapePaths[0]
+		if len(hapePath.HapeFiles) == 0 {
+			t.Fatalf("no hapefiles")
 		}
 
-		wantCowPath := &CowPath{
+		wantHapePath := &HapePath{
 			Name:         "hapes",
 			LocationType: InBinary,
 		}
-		if diff := cmp.Diff(wantCowPath, cowPath,
-			cmpopts.IgnoreFields(CowPath{}, "CowFiles"),
+		if diff := cmp.Diff(wantHapePath, hapePath,
+			cmpopts.IgnoreFields(HapePath{}, "HapeFiles"),
 		); diff != "" {
 			t.Errorf("(-want, +got)\n%s", diff)
 		}
 	})
 
 	t.Run("set COWPATH env", func(t *testing.T) {
-		cowpath := filepath.Join("testdata", "testdir")
+		hapepath := filepath.Join("testdata", "testdir")
 
-		os.Setenv("COWPATH", cowpath)
+		os.Setenv("COWPATH", hapepath)
 		defer os.Unsetenv("COWPATH")
 
-		cowPaths, err := Cows()
+		hapePaths, err := Hapes()
 		if err != nil {
 			t.Fatal(err)
 		}
-		if len(cowPaths) != 2 {
-			t.Fatalf("want 2, but got %d", len(cowPaths))
+		if len(hapePaths) != 2 {
+			t.Fatalf("want 2, but got %d", len(hapePaths))
 		}
 
-		wants := []*CowPath{
+		wants := []*HapePath{
 			{
 				Name:         "testdata/testdir",
 				LocationType: InDirectory,
@@ -61,20 +61,20 @@ func TestCows(t *testing.T) {
 				LocationType: InBinary,
 			},
 		}
-		if diff := cmp.Diff(wants, cowPaths,
-			cmpopts.IgnoreFields(CowPath{}, "CowFiles"),
+		if diff := cmp.Diff(wants, hapePaths,
+			cmpopts.IgnoreFields(HapePath{}, "HapeFiles"),
 		); diff != "" {
 			t.Errorf("(-want, +got)\n%s", diff)
 		}
 
-		if len(cowPaths[0].CowFiles) != 1 {
-			t.Fatalf("unexpected cowfiles len = %d, %+v",
-				len(cowPaths[0].CowFiles), cowPaths[0].CowFiles,
+		if len(hapePaths[0].HapeFiles) != 1 {
+			t.Fatalf("unexpected hapefiles len = %d, %+v",
+				len(hapePaths[0].HapeFiles), hapePaths[0].HapeFiles,
 			)
 		}
 
-		if cowPaths[0].CowFiles[0] != "test" {
-			t.Fatalf("want %q but got %q", "test", cowPaths[0].CowFiles[0])
+		if hapePaths[0].HapeFiles[0] != "test" {
+			t.Fatalf("want %q but got %q", "test", hapePaths[0].HapeFiles[0])
 		}
 	})
 
@@ -82,7 +82,7 @@ func TestCows(t *testing.T) {
 		os.Setenv("COWPATH", "notfound")
 		defer os.Unsetenv("COWPATH")
 
-		_, err := Cows()
+		_, err := Hapes()
 		if err == nil {
 			t.Fatal("want error")
 		}
@@ -90,18 +90,18 @@ func TestCows(t *testing.T) {
 
 }
 
-func TestCowPath_Lookup(t *testing.T) {
-	t.Run("looked for cowfile", func(t *testing.T) {
-		c := &CowPath{
+func TestHapePath_Lookup(t *testing.T) {
+	t.Run("looked for hapefile", func(t *testing.T) {
+		c := &HapePath{
 			Name:         "basepath",
-			CowFiles:     []string{"test"},
+			HapeFiles:     []string{"test"},
 			LocationType: InBinary,
 		}
 		got, ok := c.Lookup("test")
 		if !ok {
 			t.Errorf("want %v", ok)
 		}
-		want := &CowFile{
+		want := &HapeFile{
 			Name:         "test",
 			BasePath:     "basepath",
 			LocationType: InBinary,
@@ -112,13 +112,13 @@ func TestCowPath_Lookup(t *testing.T) {
 		}
 	})
 
-	t.Run("no cowfile", func(t *testing.T) {
-		c := &CowPath{
+	t.Run("no hapefile", func(t *testing.T) {
+		c := &HapePath{
 			Name:         "basepath",
-			CowFiles:     []string{"test"},
+			HapeFiles:     []string{"test"},
 			LocationType: InBinary,
 		}
-		got, ok := c.Lookup("no cowfile")
+		got, ok := c.Lookup("no hapefile")
 		if ok {
 			t.Errorf("want %v", !ok)
 		}
@@ -128,8 +128,8 @@ func TestCowPath_Lookup(t *testing.T) {
 	})
 }
 
-func TestCowFile_ReadAll(t *testing.T) {
-	fromTestData := &CowFile{
+func TestHapeFile_ReadAll(t *testing.T) {
+	fromTestData := &HapeFile{
 		Name:         "test",
 		BasePath:     filepath.Join("testdata", "testdir"),
 		LocationType: InDirectory,
@@ -139,7 +139,7 @@ func TestCowFile_ReadAll(t *testing.T) {
 		t.Fatal(err)
 	}
 
-	fromBinary := &CowFile{
+	fromBinary := &HapeFile{
 		Name:         "default",
 		BasePath:     "hapes",
 		LocationType: InBinary,
@@ -199,7 +199,7 @@ func TestSay(t *testing.T) {
 			args: args{
 				phrase: "error",
 				options: []Option{
-					func(*Cow) error {
+					func(*Hape) error {
 						return errors.New("error")
 					},
 				},

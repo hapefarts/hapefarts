@@ -16,11 +16,11 @@ func init() {
 
 // Say to return hapesay string.
 func Say(phrase string, options ...Option) (string, error) {
-	cow, err := New(options...)
+	hape, err := New(options...)
 	if err != nil {
 		return "", err
 	}
-	return cow.Say(phrase)
+	return hape.Say(phrase)
 }
 
 // LocationType indicates the type of COWPATH.
@@ -34,24 +34,24 @@ const (
 	InDirectory
 )
 
-// CowPath is information of the COWPATH.
-type CowPath struct {
+// HapePath is information of the COWPATH.
+type HapePath struct {
 	// Name is name of the COWPATH.
 	// If you specified `COWPATH=/foo/bar`, Name is `/foo/bar`.
 	Name string
-	// CowFiles are name of the cowfile which are trimmed ".hape" suffix.
-	CowFiles []string
+	// HapeFiles are name of the hapefile which are trimmed ".hape" suffix.
+	HapeFiles []string
 	// LocationType is the type of COWPATH
 	LocationType LocationType
 }
 
-// Lookup will look for the target cowfile in the specified path.
-// If it exists, it returns the cowfile information and true value.
-func (c *CowPath) Lookup(target string) (*CowFile, bool) {
-	for _, cowfile := range c.CowFiles {
-		if cowfile == target {
-			return &CowFile{
-				Name:         cowfile,
+// Lookup will look for the target hapefile in the specified path.
+// If it exists, it returns the hapefile information and true value.
+func (c *HapePath) Lookup(target string) (*HapeFile, bool) {
+	for _, hapefile := range c.HapeFiles {
+		if hapefile == target {
+			return &HapeFile{
+				Name:         hapefile,
 				BasePath:     c.Name,
 				LocationType: c.LocationType,
 			}, true
@@ -60,20 +60,20 @@ func (c *CowPath) Lookup(target string) (*CowFile, bool) {
 	return nil, false
 }
 
-// CowFile is information of the cowfile.
-type CowFile struct {
-	// Name is name of the cowfile.
+// HapeFile is information of the hapefile.
+type HapeFile struct {
+	// Name is name of the hapefile.
 	Name string
-	// BasePath is the path which the cowpath is in.
+	// BasePath is the path which the hapepath is in.
 	BasePath string
 	// LocationType is the type of COWPATH
 	LocationType LocationType
 }
 
-// ReadAll reads the cowfile content.
+// ReadAll reads the hapefile content.
 // If LocationType is InBinary, the file read from binary.
 // otherwise reads from file system.
-func (c *CowFile) ReadAll() ([]byte, error) {
+func (c *HapeFile) ReadAll() ([]byte, error) {
 	joinedPath := filepath.Join(c.BasePath, c.Name+".hape")
 	if c.LocationType == InBinary {
 		return Asset(joinedPath)
@@ -81,53 +81,53 @@ func (c *CowFile) ReadAll() ([]byte, error) {
 	return ioutil.ReadFile(joinedPath)
 }
 
-// Cows to get list of hapes
-func Cows() ([]*CowPath, error) {
-	cowPaths, err := cowsFromCowPath()
+// Hapes to get list of hapes
+func Hapes() ([]*HapePath, error) {
+	hapePaths, err := hapesFromHapePath()
 	if err != nil {
 		return nil, err
 	}
-	cowPaths = append(cowPaths, &CowPath{
+	hapePaths = append(hapePaths, &HapePath{
 		Name:         "hapes",
-		CowFiles:     CowsInBinary(),
+		HapeFiles:     HapesInBinary(),
 		LocationType: InBinary,
 	})
-	return cowPaths, nil
+	return hapePaths, nil
 }
 
-func cowsFromCowPath() ([]*CowPath, error) {
-	cowPaths := make([]*CowPath, 0)
-	cowPath := os.Getenv("HAPEPATH")
-	if cowPath == "" {
-		return cowPaths, nil
+func hapesFromHapePath() ([]*HapePath, error) {
+	hapePaths := make([]*HapePath, 0)
+	hapePath := os.Getenv("HAPEPATH")
+	if hapePath == "" {
+		return hapePaths, nil
 	}
-	paths := splitPath(cowPath)
+	paths := splitPath(hapePath)
 	for _, path := range paths {
 		dirEntries, err := ioutil.ReadDir(path)
 		if err != nil {
 			return nil, err
 		}
-		path := &CowPath{
+		path := &HapePath{
 			Name:         path,
-			CowFiles:     []string{},
+			HapeFiles:     []string{},
 			LocationType: InDirectory,
 		}
 		for _, entry := range dirEntries {
 			name := entry.Name()
 			if strings.HasSuffix(name, ".hape") {
 				name = strings.TrimSuffix(name, ".hape")
-				path.CowFiles = append(path.CowFiles, name)
+				path.HapeFiles = append(path.HapeFiles, name)
 			}
 		}
-		sort.Strings(path.CowFiles)
-		cowPaths = append(cowPaths, path)
+		sort.Strings(path.HapeFiles)
+		hapePaths = append(hapePaths, path)
 	}
-	return cowPaths, nil
+	return hapePaths, nil
 }
 
-// GetCow to get cow's ascii art
-func (cow *Cow) GetCow() (string, error) {
-	src, err := cow.typ.ReadAll()
+// GetHape to get hape's ascii art
+func (hape *Hape) GetHape() (string, error) {
+	src, err := hape.typ.ReadAll()
 	if err != nil {
 		return "", err
 	}
@@ -136,12 +136,12 @@ func (cow *Cow) GetCow() (string, error) {
 		"\\\\", "\\",
 		"\\@", "@",
 		"\\$", "$",
-		"$eyes", cow.eyes,
-		"${eyes}", cow.eyes,
-		"$tongue", cow.tongue,
-		"${tongue}", cow.tongue,
-		"$thoughts", string(cow.thoughts),
-		"${thoughts}", string(cow.thoughts),
+		"$eyes", hape.eyes,
+		"${eyes}", hape.eyes,
+		"$tongue", hape.tongue,
+		"${tongue}", hape.tongue,
+		"$thoughts", string(hape.thoughts),
+		"${thoughts}", string(hape.thoughts),
 	)
 	newsrc := r.Replace(string(src))
 	separate := strings.Split(newsrc, "\n")

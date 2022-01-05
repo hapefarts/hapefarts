@@ -15,8 +15,8 @@ type border struct {
 	only   [2]rune
 }
 
-func (cow *Cow) borderType() border {
-	if cow.thinking {
+func (hape *Hape) borderType() border {
+	if hape.thinking {
 		return border{
 			first:  [2]rune{'(', ')'},
 			middle: [2]rune{'(', ')'},
@@ -40,21 +40,21 @@ type line struct {
 
 type lines []*line
 
-func (cow *Cow) maxLineWidth(lines []*line) int {
+func (hape *Hape) maxLineWidth(lines []*line) int {
 	maxWidth := 0
 	for _, line := range lines {
 		if line.runeWidth > maxWidth {
 			maxWidth = line.runeWidth
 		}
-		if !cow.disableWordWrap && maxWidth > cow.ballonWidth {
-			return cow.ballonWidth
+		if !hape.disableWordWrap && maxWidth > hape.ballonWidth {
+			return hape.ballonWidth
 		}
 	}
 	return maxWidth
 }
 
-func (cow *Cow) getLines(phrase string) []*line {
-	text := cow.canonicalizePhrase(phrase)
+func (hape *Hape) getLines(phrase string) []*line {
+	text := hape.canonicalizePhrase(phrase)
 	lineTexts := strings.Split(text, "\n")
 	lines := make([]*line, 0, len(lineTexts))
 	for _, lineText := range lineTexts {
@@ -66,30 +66,30 @@ func (cow *Cow) getLines(phrase string) []*line {
 	return lines
 }
 
-func (cow *Cow) canonicalizePhrase(phrase string) string {
+func (hape *Hape) canonicalizePhrase(phrase string) string {
 	// Replace tab to 8 spaces
 	phrase = strings.Replace(phrase, "\t", "       ", -1)
 
-	if cow.disableWordWrap {
+	if hape.disableWordWrap {
 		return phrase
 	}
-	width := cow.ballonWidth
+	width := hape.ballonWidth
 	return wordwrap.WrapString(phrase, uint(width))
 }
 
 // Balloon to get the balloon and the string entered in the balloon.
-func (cow *Cow) Balloon(phrase string) string {
-	defer cow.buf.Reset()
+func (hape *Hape) Balloon(phrase string) string {
+	defer hape.buf.Reset()
 
-	lines := cow.getLines(phrase)
-	maxWidth := cow.maxLineWidth(lines)
+	lines := hape.getLines(phrase)
+	maxWidth := hape.maxLineWidth(lines)
 
-	cow.writeBallon(lines, maxWidth)
+	hape.writeBallon(lines, maxWidth)
 
-	return cow.buf.String()
+	return hape.buf.String()
 }
 
-func (cow *Cow) writeBallon(lines []*line, maxWidth int) {
+func (hape *Hape) writeBallon(lines []*line, maxWidth int) {
 	top := make([]byte, 0)
 	bottom := make([]byte, 0)
 
@@ -103,27 +103,27 @@ func (cow *Cow) writeBallon(lines []*line, maxWidth int) {
 		bottom = append(bottom, '-')
 	}
 
-	borderType := cow.borderType()
+	borderType := hape.borderType()
 
-	cow.buf.Write(top)
-	cow.buf.Write([]byte{' ', '\n'})
+	hape.buf.Write(top)
+	hape.buf.Write([]byte{' ', '\n'})
 	defer func() {
-		cow.buf.Write(bottom)
-		cow.buf.Write([]byte{' ', '\n'})
+		hape.buf.Write(bottom)
+		hape.buf.Write([]byte{' ', '\n'})
 	}()
 
 	l := len(lines)
 	if l == 1 {
 		border := borderType.only
 		for i := 0; i < 65; i++ {
-			cow.buf.WriteRune(' ')
+			hape.buf.WriteRune(' ')
 		}
-		cow.buf.WriteRune(border[0])
-		cow.buf.WriteRune(' ')
-		cow.buf.WriteString(lines[0].text)
-		cow.buf.WriteRune(' ')
-		cow.buf.WriteRune(border[1])
-		cow.buf.WriteRune('\n')
+		hape.buf.WriteRune(border[0])
+		hape.buf.WriteRune(' ')
+		hape.buf.WriteString(lines[0].text)
+		hape.buf.WriteRune(' ')
+		hape.buf.WriteRune(border[1])
+		hape.buf.WriteRune('\n')
 		return
 	}
 
@@ -138,18 +138,18 @@ func (cow *Cow) writeBallon(lines []*line, maxWidth int) {
 			border = borderType.middle
 		}
 		for i := 0; i < 65; i++ {
-			cow.buf.WriteRune(' ')
+			hape.buf.WriteRune(' ')
 		}
-		cow.buf.WriteRune(border[0])
-		cow.buf.WriteRune(' ')
-		cow.padding(lines[i], maxWidth)
-		cow.buf.WriteRune(' ')
-		cow.buf.WriteRune(border[1])
-		cow.buf.WriteRune('\n')
+		hape.buf.WriteRune(border[0])
+		hape.buf.WriteRune(' ')
+		hape.padding(lines[i], maxWidth)
+		hape.buf.WriteRune(' ')
+		hape.buf.WriteRune(border[1])
+		hape.buf.WriteRune('\n')
 	}
 }
 
-func (cow *Cow) flush(text, top, bottom fmt.Stringer) string {
+func (hape *Hape) flush(text, top, bottom fmt.Stringer) string {
 	return fmt.Sprintf(
 		"%s\n%s%s\n",
 		top.String(),
@@ -158,15 +158,15 @@ func (cow *Cow) flush(text, top, bottom fmt.Stringer) string {
 	)
 }
 
-func (cow *Cow) padding(line *line, maxWidth int) {
+func (hape *Hape) padding(line *line, maxWidth int) {
 	if maxWidth <= line.runeWidth {
-		cow.buf.WriteString(line.text)
+		hape.buf.WriteString(line.text)
 		return
 	}
 
-	cow.buf.WriteString(line.text)
+	hape.buf.WriteString(line.text)
 	l := maxWidth - line.runeWidth
 	for i := 0; i < l; i++ {
-		cow.buf.WriteRune(' ')
+		hape.buf.WriteRune(' ')
 	}
 }

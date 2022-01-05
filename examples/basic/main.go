@@ -27,7 +27,7 @@ func simple() {
 }
 
 func complex() {
-	cow, err := hapesay.New(
+	hape, err := hapesay.New(
 		hapesay.BallonWidth(40),
 		//hapesay.Thinking(),
 		hapesay.Random(),
@@ -35,7 +35,7 @@ func complex() {
 	if err != nil {
 		panic(err)
 	}
-	say, err := cow.Say("Hello")
+	say, err := hape.Say("Hello")
 	if err != nil {
 		panic(err)
 	}

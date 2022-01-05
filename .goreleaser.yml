@@ -27,10 +27,10 @@ builds:
       - goos: windows
         goarch: arm
         goarm: 7
-  - id: cowthink
+  - id: hapethink
     dir: cmd
-    main: ./cowthink/main.go
-    binary: cowthink
+    main: ./hapethink/main.go
+    binary: hapethink
     env:
       - CGO_ENABLED=0
     ldflags: -s -w -X main.version={{.Version}}
@@ -59,7 +59,7 @@ builds:
 archives:
 - builds:
   - hapesay
-  - cowthink
+  - hapethink
   name_template: 'hapesay_{{ .Version }}_{{ .Os }}_{{ .Arch }}'
   replacements:
     darwin: macOS
@@ -85,7 +85,7 @@ brews:
   folder: Formula
   install: |
     bin.install "hapesay"
-    bin.install "cowthink"
+    bin.install "hapethink"
     man1.install Dir["doc/hapesay.1"]
 
 nfpms:

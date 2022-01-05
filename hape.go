@@ -6,11 +6,11 @@ import (
 	"strings"
 )
 
-// Cow struct!!
-type Cow struct {
+// Hape struct!!
+type Hape struct {
 	eyes            string
 	tongue          string
-	typ             *CowFile
+	typ             *HapeFile
 	thoughts        rune
 	thinking        bool
 	ballonWidth     int
@@ -19,13 +19,13 @@ type Cow struct {
 	buf strings.Builder
 }
 
-// New returns pointer of Cow struct that made by options
-func New(options ...Option) (*Cow, error) {
-	cow := &Cow{
+// New returns pointer of Hape struct that made by options
+func New(options ...Option) (*Hape, error) {
+	hape := &Hape{
 		eyes:     "oo",
 		tongue:   "  ",
 		thoughts: '/',
-		typ: &CowFile{
+		typ: &HapeFile{
 			Name:         "default",
 			BasePath:     "hapes",
 			LocationType: InBinary,
@@ -33,28 +33,28 @@ func New(options ...Option) (*Cow, error) {
 		ballonWidth: 40,
 	}
 	for _, o := range options {
-		if err := o(cow); err != nil {
+		if err := o(hape); err != nil {
 			return nil, err
 		}
 	}
-	return cow, nil
+	return hape, nil
 }
 
-// Say returns string that said by cow
-func (cow *Cow) Say(phrase string) (string, error) {
-	mow, err := cow.GetCow()
+// Say returns string that said by hape
+func (hape *Hape) Say(phrase string) (string, error) {
+	mow, err := hape.GetHape()
 	if err != nil {
 		return "", err
 	}
-	return cow.Balloon(phrase) + mow, nil
+	return hape.Balloon(phrase) + mow, nil
 }
 
-// Clone returns a copy of cow.
+// Clone returns a copy of hape.
 //
 // If any options are specified, they will be reflected.
-func (cow *Cow) Clone(options ...Option) (*Cow, error) {
-	ret := new(Cow)
-	*ret = *cow
+func (hape *Hape) Clone(options ...Option) (*Hape, error) {
+	ret := new(Hape)
+	*ret = *hape
 	ret.buf.Reset()
 	for _, o := range options {
 		if err := o(ret); err != nil {
@@ -65,12 +65,12 @@ func (cow *Cow) Clone(options ...Option) (*Cow, error) {
 }
 
 // Option defined for Options
-type Option func(*Cow) error
+type Option func(*Hape) error
 
 // Eyes specifies eyes
 // The specified string will always be adjusted to be equal to two characters.
 func Eyes(s string) Option {
-	return func(c *Cow) error {
+	return func(c *Hape) error {
 		c.eyes = adjustTo2Chars(s)
 		return nil
 	}
@@ -79,7 +79,7 @@ func Eyes(s string) Option {
 // Tongue specifies tongue
 // The specified string will always be adjusted to be less than or equal to two characters.
 func Tongue(s string) Option {
-	return func(c *Cow) error {
+	return func(c *Hape) error {
 		c.tongue = adjustTo2Chars(s)
 		return nil
 	}
@@ -95,52 +95,52 @@ func adjustTo2Chars(s string) string {
 	return "  "
 }
 
-func containCows(target string) (*CowFile, error) {
-	cowPaths, err := Cows()
+func containHapes(target string) (*HapeFile, error) {
+	hapePaths, err := Hapes()
 	if err != nil {
 		return nil, err
 	}
-	for _, cowPath := range cowPaths {
-		cowfile, ok := cowPath.Lookup(target)
+	for _, hapePath := range hapePaths {
+		hapefile, ok := hapePath.Lookup(target)
 		if ok {
-			return cowfile, nil
+			return hapefile, nil
 		}
 	}
 	return nil, nil
 }
 
-// NotFound is indicated not found the cowfile.
+// NotFound is indicated not found the hapefile.
 type NotFound struct {
-	Cowfile string
+	Hapefile string
 }
 
 var _ error = (*NotFound)(nil)
 
 func (n *NotFound) Error() string {
-	return fmt.Sprintf("not found %q cowfile", n.Cowfile)
+	return fmt.Sprintf("not found %q hapefile", n.Hapefile)
 }
 
-// Type specify name of the cowfile
+// Type specify name of the hapefile
 func Type(s string) Option {
 	if s == "" {
 		s = "default"
 	}
-	return func(c *Cow) error {
-		cowfile, err := containCows(s)
+	return func(c *Hape) error {
+		hapefile, err := containHapes(s)
 		if err != nil {
 			return err
 		}
-		if cowfile != nil {
-			c.typ = cowfile
+		if hapefile != nil {
+			c.typ = hapefile
 			return nil
 		}
-		return &NotFound{Cowfile: s}
+		return &NotFound{Hapefile: s}
 	}
 }
 
 // Thinking enables thinking mode
 func Thinking() Option {
-	return func(c *Cow) error {
+	return func(c *Hape) error {
 		c.thinking = true
 		return nil
 	}
@@ -148,9 +148,9 @@ func Thinking() Option {
 
 // Thoughts Thoughts allows you to specify
 // the rune that will be drawn between
-// the speech bubbles and the cow
+// the speech bubbles and the hape
 func Thoughts(thoughts rune) Option {
-	return func(c *Cow) error {
+	return func(c *Hape) error {
 		c.thoughts = thoughts
 		return nil
 	}
@@ -158,8 +158,8 @@ func Thoughts(thoughts rune) Option {
 
 // Random specifies something .hape from hapes directory
 func Random() Option {
-	pick, err := pickCow()
-	return func(c *Cow) error {
+	pick, err := pickHape()
+	return func(c *Hape) error {
 		if err != nil {
 			return err
 		}
@@ -168,25 +168,25 @@ func Random() Option {
 	}
 }
 
-func pickCow() (*CowFile, error) {
-	cowPaths, err := Cows()
+func pickHape() (*HapeFile, error) {
+	hapePaths, err := Hapes()
 	if err != nil {
 		return nil, err
 	}
-	cowPath := cowPaths[rand.Intn(len(cowPaths))]
+	hapePath := hapePaths[rand.Intn(len(hapePaths))]
 
-	n := len(cowPath.CowFiles)
-	cowfile := cowPath.CowFiles[rand.Intn(n)]
-	return &CowFile{
-		Name:         cowfile,
-		BasePath:     cowPath.Name,
-		LocationType: cowPath.LocationType,
+	n := len(hapePath.HapeFiles)
+	hapefile := hapePath.HapeFiles[rand.Intn(n)]
+	return &HapeFile{
+		Name:         hapefile,
+		BasePath:     hapePath.Name,
+		LocationType: hapePath.LocationType,
 	}, nil
 }
 
 // BallonWidth specifies ballon size
 func BallonWidth(size uint) Option {
-	return func(c *Cow) error {
+	return func(c *Hape) error {
 		c.ballonWidth = int(size)
 		return nil
 	}
@@ -195,7 +195,7 @@ func BallonWidth(size uint) Option {
 // DisableWordWrap disables word wrap.
 // Ignoring width of the ballon.
 func DisableWordWrap() Option {
-	return func(c *Cow) error {
+	return func(c *Hape) error {
 		c.disableWordWrap = true
 		return nil
 	}
