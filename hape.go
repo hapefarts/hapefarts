@@ -15,6 +15,7 @@ type Hape struct {
 	thinking        bool
 	ballonWidth     int
 	disableWordWrap bool
+	balloonOffset   int
 
 	buf strings.Builder
 }

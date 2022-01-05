@@ -6,6 +6,7 @@ import (
 	"os"
 	"path/filepath"
 	"sort"
+	"strconv"
 	"strings"
 	"time"
 )
@@ -89,7 +90,7 @@ func Hapes() ([]*HapePath, error) {
 	}
 	hapePaths = append(hapePaths, &HapePath{
 		Name:         "hapes",
-		HapeFiles:     HapesInBinary(),
+		HapeFiles:    HapesInBinary(),
 		LocationType: InBinary,
 	})
 	return hapePaths, nil
@@ -109,7 +110,7 @@ func hapesFromHapePath() ([]*HapePath, error) {
 		}
 		path := &HapePath{
 			Name:         path,
-			HapeFiles:     []string{},
+			HapeFiles:    []string{},
 			LocationType: InDirectory,
 		}
 		for _, entry := range dirEntries {
@@ -148,6 +149,12 @@ func (hape *Hape) GetHape() (string, error) {
 	mow := make([]string, 0, len(separate))
 	for _, line := range separate {
 		if strings.Contains(line, "$the_hape = <<EOH") || strings.HasPrefix(line, "##") {
+			continue
+		}
+
+		if strings.Contains(line, "$ballonOffset = ") {
+			line = strings.TrimPrefix(line, "$ballonOffset = ")
+			hape.balloonOffset, _ = strconv.Atoi(line)
 			continue
 		}
 
