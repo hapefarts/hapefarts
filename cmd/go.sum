@@ -1,7 +1,7 @@
 github.com/Code-Hex/go-wordwrap v1.0.0 h1:yl5fLyZEz3+hPGbpTRlTQ8mQJ1HXWcTq1FCNR1ch6zM=
 github.com/Code-Hex/go-wordwrap v1.0.0/go.mod h1:/SsbgkY2Q0aPQRyvXcyQwWYTQOIwSORKe6MPjRVGIWU=
-github.com/Rid/hapesay/v2 v2.0.14-0.20220107161819-4b88349a4147 h1:w64linSrgn4C46MW6GmIabuLBGYFGOEII+a1k9fZtXY=
-github.com/Rid/hapesay/v2 v2.0.14-0.20220107161819-4b88349a4147/go.mod h1:siGfPgyNgEZxToACxKNqrnT1LTmMrgZfXUW1f7ruhno=
+github.com/Rid/hapesay/v2 v2.0.15-0.20220107162356-b99e3575b34f h1:GIrI8iMhhW/XTG2Y8sQLWaELHgbU84fO8NoJB5kLNCk=
+github.com/Rid/hapesay/v2 v2.0.15-0.20220107162356-b99e3575b34f/go.mod h1:siGfPgyNgEZxToACxKNqrnT1LTmMrgZfXUW1f7ruhno=
 github.com/gdamore/encoding v1.0.0 h1:+7OoQ1Bc6eTm5niUzBa0Ctsh6JbMW6Ra+YNuAtDBdko=
 github.com/gdamore/encoding v1.0.0/go.mod h1:alR0ol34c49FCSBLjhosxzcPHQbf2trDkoo5dl+VrEg=
 github.com/gdamore/tcell/v2 v2.4.0 h1:W6dxJEmaxYvhICFoTY3WrLLEXsQ11SaFnKGVEXW57KM=
