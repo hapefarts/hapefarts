@@ -31,7 +31,7 @@ func New(options ...Option) (*Hape, error) {
 			BasePath:     "hapes",
 			LocationType: InBinary,
 		},
-		ballonWidth: 40,
+		ballonWidth: 15,
 	}
 	for _, o := range options {
 		if err := o(hape); err != nil {
