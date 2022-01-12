@@ -18,5 +18,6 @@ $the_hape = <<EOH;
        / ("ª    "~
    _-'" '.'.    |┐`
 _-^         ¬│C`²  ì" .
-Powered by hapesay (rid#2535)
+Powered by hapesay (@rid#2535)
+Try me: https://hape-say.com/<Your message here>
 EOH

@@ -35,5 +35,6 @@ $the_hape = <<EOH;
         _ ^          ".  `v_        ]Fw \
      ,-`                ", '0TFM^"""   T EY.
  _.^                       "w^w        /%b   "w_
-Powered by hapesay (rid#2535)
+Powered by hapesay (@rid#2535)
+Try me: https://hape-say.com/<Your message here>
 EOH
