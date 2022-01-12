@@ -94,7 +94,7 @@ func TestHapePath_Lookup(t *testing.T) {
 	t.Run("looked for hapefile", func(t *testing.T) {
 		c := &HapePath{
 			Name:         "basepath",
-			HapeFiles:     []string{"test"},
+			HapeFiles:    []string{"test"},
 			LocationType: InBinary,
 		}
 		got, ok := c.Lookup("test")
@@ -115,7 +115,7 @@ func TestHapePath_Lookup(t *testing.T) {
 	t.Run("no hapefile", func(t *testing.T) {
 		c := &HapePath{
 			Name:         "basepath",
-			HapeFiles:     []string{"test"},
+			HapeFiles:    []string{"test"},
 			LocationType: InBinary,
 		}
 		got, ok := c.Lookup("no hapefile")
@@ -140,7 +140,7 @@ func TestHapeFile_ReadAll(t *testing.T) {
 	}
 
 	fromBinary := &HapeFile{
-		Name:         "default",
+		Name:         "mobile",
 		BasePath:     "hapes",
 		LocationType: InBinary,
 	}
@@ -176,11 +176,11 @@ func TestSay(t *testing.T) {
 		wantErr  bool
 	}{
 		{
-			name: "default",
+			name: "mobile",
 			args: args{
 				phrase: "hello!",
 			},
-			wantFile: "default.hape",
+			wantFile: "mobile.hape",
 			wantErr:  false,
 		},
 		{

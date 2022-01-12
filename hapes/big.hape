@@ -2,7 +2,7 @@
 ## Hape WAKE&BAYC
 ##
 ##
-$ballonOffset = 130
+$ballonOffset = 132
 $the_hape = <<EOH;
                                                                                       &&&&&&&&&&&&&&&&                               $thoughts
                                                                                &&&&%,,* .         ,(%&&&&&&&                        $thoughts

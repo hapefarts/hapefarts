@@ -27,7 +27,7 @@ func New(options ...Option) (*Hape, error) {
 		tongue:   "  ",
 		thoughts: '/',
 		typ: &HapeFile{
-			Name:         "default",
+			Name:         "mobile",
 			BasePath:     "hapes",
 			LocationType: InBinary,
 		},
@@ -124,7 +124,7 @@ func (n *NotFound) Error() string {
 // Type specify name of the hapefile
 func Type(s string) Option {
 	if s == "" {
-		s = "default"
+		s = "mobile"
 	}
 	return func(c *Hape) error {
 		hapefile, err := containHapes(s)

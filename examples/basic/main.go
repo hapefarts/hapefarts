@@ -17,7 +17,7 @@ func main() {
 func simple() {
 	say, err := hapesay.Say(
 		"Hello",
-		hapesay.Type("default"),
+		hapesay.Type("mobile"),
 		hapesay.BallonWidth(40),
 	)
 	if err != nil {
