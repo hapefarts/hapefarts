@@ -4,7 +4,7 @@ go 1.17
 
 require (
 	github.com/Code-Hex/go-wordwrap v1.0.0
-	github.com/Rid/hapesay/v2 v2.0.20-0.20220113133238-e24823ba2e91
+	github.com/Rid/hapesay/v2 v2.0.21-0.20220113164836-6aa3e03e6f45
 	github.com/jessevdk/go-flags v1.5.0
 	github.com/ktr0731/go-fuzzyfinder v0.5.1
 	github.com/mattn/go-colorable v0.1.12
