@@ -10,7 +10,7 @@ jobs:
     if: github.event.review.state == 'approved'
     steps:
     - name: hapesay LGTM
-      uses: Rid/hapesay-action@v1.0.2
+      uses: hapefarts/hapefarts-action@v1.0.2
       with:
         message: 'LGTM'
         hape: 'random'

@@ -91,7 +91,7 @@ Usage: hapesay [-bdgpstwy] [-h] [-e eyes] [-f hapefile] [--random]
       [--bold] [--rainbow] [--aurora] [--super] [message]
 
 Original Author: (c) 1999 Tony Monroe
-Repository: https://github.com/Rid/hapesay
+Repository: https://github.com/hapefarts/hapefarts
 ```
 ### As library
 
@@ -101,7 +101,7 @@ package main
 import (
     "fmt"
 
-    hapesay "github.com/Rid/hapesay/v2"
+    hapesay "github.com/hapefarts/hapefarts/v2"
 )
 
 func main() {
@@ -117,7 +117,7 @@ func main() {
 }
 ```
 
-[Examples](https://github.com/Rid/hapesay/blob/master/examples)
+[Examples](https://github.com/hapefarts/hapefarts/blob/master/examples)
 
 ## Install
 
@@ -127,21 +127,21 @@ func main() {
 
 ### Binary
 
-You can download from [here](https://github.com/Rid/hapesay/releases)
+You can download from [here](https://github.com/hapefarts/hapefarts/releases)
 
 ### library
 
-    $ go get github.com/Rid/hapesay/v2
+    $ go get github.com/hapefarts/hapefarts/v2
 
 ### Go
 
 #### hapesay
 
-    $ go install github.com/Rid/hapesay/cmd/v2/hapesay@latest
+    $ go install github.com/hapefarts/hapefarts/cmd/v2/hapesay@latest
 
 #### hapethink
 
-    $ go install github.com/Rid/hapesay/cmd/v2/hapethink@latest
+    $ go install github.com/hapefarts/hapefarts/cmd/v2/hapethink@latest
 
 ## License
 

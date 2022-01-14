@@ -15,9 +15,9 @@ import (
 	"time"
 
 	"github.com/Code-Hex/go-wordwrap"
-	"github.com/Rid/hapesay/cmd/v2/internal/super"
-	hapesay "github.com/Rid/hapesay/v2"
-	"github.com/Rid/hapesay/v2/decoration"
+	"github.com/hapefarts/hapefarts/cmd/v2/internal/super"
+	hapesay "github.com/hapefarts/hapefarts/v2"
+	"github.com/hapefarts/hapefarts/v2/decoration"
 	"github.com/jessevdk/go-flags"
 	"github.com/ktr0731/go-fuzzyfinder"
 	"github.com/mattn/go-colorable"

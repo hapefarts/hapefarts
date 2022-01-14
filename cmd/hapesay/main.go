@@ -3,7 +3,7 @@ package main
 import (
 	"os"
 
-	"github.com/Rid/hapesay/cmd/v2/internal/cli"
+	"github.com/hapefarts/hapefarts/cmd/v2/internal/cli"
 )
 
 var version string

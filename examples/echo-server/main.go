@@ -10,7 +10,7 @@ import (
 	"strings"
 	"time"
 
-	hapesay "github.com/Rid/hapesay/v2"
+	hapesay "github.com/hapefarts/hapefarts/v2"
 )
 
 const limit = 1000

@@ -9,9 +9,9 @@ import (
 	"syscall"
 	"time"
 
-	"github.com/Rid/hapesay/cmd/v2/internal/screen"
-	hapesay "github.com/Rid/hapesay/v2"
-	"github.com/Rid/hapesay/v2/decoration"
+	"github.com/hapefarts/hapefarts/cmd/v2/internal/screen"
+	hapesay "github.com/hapefarts/hapefarts/v2"
+	"github.com/hapefarts/hapefarts/v2/decoration"
 	runewidth "github.com/mattn/go-runewidth"
 	"github.com/rivo/uniseg"
 )
