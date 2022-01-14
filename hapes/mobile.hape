@@ -2,7 +2,7 @@
 ## Hape
 ##
 ##
-$ballonOffset = 14
+$ballonOffset = 56
 $the_hape = <<EOH;
                                                   ▌      $thoughts2
                                  ▄▄▀▀▀▀▀▀▀▄▄▄▄   ▓      $thoughts2
