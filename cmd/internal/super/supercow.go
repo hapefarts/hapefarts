@@ -17,7 +17,9 @@ import (
 )
 
 func getNoSaidHape(hape *hapesay.Hape, opts ...hapesay.Option) (string, error) {
-	opts = append(opts, hapesay.Thoughts(' '))
+	opts = append(opts, hapesay.Thoughts1(' '))
+	opts = append(opts, hapesay.Thoughts2(' '))
+
 	hape, err := hape.Clone(opts...)
 	if err != nil {
 		return "", err
@@ -146,14 +148,14 @@ func newRenderer(saidHape, notSaidHape string) *renderer {
 	signal.Notify(quit, syscall.SIGINT, syscall.SIGTERM, syscall.SIGHUP)
 
 	return &renderer{
-		max:             max,
-		middle:          max / 2,
-		screenWidth:     w,
-		heightDiff:      screen.Height() - strings.Count(saidHape, "\n") - 1,
-		frames:          make(chan string, max),
+		max:              max,
+		middle:           max / 2,
+		screenWidth:      w,
+		heightDiff:       screen.Height() - strings.Count(saidHape, "\n") - 1,
+		frames:           make(chan string, max),
 		saidHape:         saidHape,
 		notSaidHapeLines: makeHapeLines(notSaidHape),
-		quit:            quit,
+		quit:             quit,
 	}
 }
 

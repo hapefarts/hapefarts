@@ -26,10 +26,10 @@ func (hape *Hape) borderType() border {
 	}
 
 	return border{
-		first:  [2]rune{'/', '\\'},
-		middle: [2]rune{'|', '|'},
-		last:   [2]rune{'\\', '/'},
-		only:   [2]rune{'<', '>'},
+		first:  [2]rune{'o', 'o'},
+		middle: [2]rune{'O', 'O'},
+		last:   [2]rune{'o', 'o'},
+		only:   [2]rune{'O', 'O'},
 	}
 }
 
@@ -99,8 +99,13 @@ func (hape *Hape) writeBallon(lines []*line, maxWidth int) {
 	}
 
 	for i := 0; i < maxWidth+2; i++ {
-		top = append(top, '_')
-		bottom = append(bottom, '-')
+		if i%2 == 0 {
+			top = append(top, 'O')
+			bottom = append(bottom, 'o')
+		} else {
+			top = append(top, 'o')
+			bottom = append(bottom, 'O')
+		}
 	}
 
 	borderType := hape.borderType()

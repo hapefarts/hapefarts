@@ -14,10 +14,10 @@ import (
 	"strings"
 	"time"
 
+	"github.com/Code-Hex/go-wordwrap"
 	"github.com/Rid/hapesay/cmd/v2/internal/super"
 	hapesay "github.com/Rid/hapesay/v2"
 	"github.com/Rid/hapesay/v2/decoration"
-	"github.com/Code-Hex/go-wordwrap"
 	"github.com/jessevdk/go-flags"
 	"github.com/ktr0731/go-fuzzyfinder"
 	"github.com/mattn/go-colorable"
@@ -166,7 +166,8 @@ func (c *CLI) generateOptions(opts *options) []hapesay.Option {
 	if c.Thinking {
 		o = append(o,
 			hapesay.Thinking(),
-			hapesay.Thoughts('o'),
+			hapesay.Thoughts1('o'),
+			hapesay.Thoughts2('O'),
 		)
 	}
 	if opts.Random {

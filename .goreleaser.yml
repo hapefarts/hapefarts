@@ -80,7 +80,7 @@ brews:
     owner: Code-Hex
     name: homebrew-tap
     token: "{{ .Env.HOMEBREW_TAP_GITHUB_TOKEN }}"
-  homepage: https://github.com/Rid/hapesay
+  homepage: https://github.com/hapefarts/hapefarts
   description: "Fast, funny, everyone wanted? new hapesay!!"
   folder: Formula
   install: |
@@ -91,7 +91,7 @@ brews:
 nfpms:
   - license: Artistic License 2.0
     maintainer: Kei Kamikawa <x00.x7f.x86@gmail.com>
-    homepage: https://github.com/Rid/hapesay
+    homepage: https://github.com/hapefarts/hapefarts
     bindir: /usr/local/bin
     description: "Fast, funny, everyone wanted? new hapesay!!"
     formats:

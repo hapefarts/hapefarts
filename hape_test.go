@@ -50,7 +50,8 @@ func TestHape_Clone(t *testing.T) {
 			name: "clone and some options",
 			opts: []Option{
 				Thinking(),
-				Thoughts('o'),
+				Thoughts1('o'),
+				Thoughts2('o'),
 			},
 			from: func() *Hape {
 				hape, _ := New(
@@ -64,7 +65,8 @@ func TestHape_Clone(t *testing.T) {
 					Type("docker"),
 					BallonWidth(60),
 					Thinking(),
-					Thoughts('o'),
+					Thoughts1('o'),
+					Thoughts2('o'),
 				)
 				return hape
 			}(),
@@ -88,7 +90,8 @@ func TestHape_Clone(t *testing.T) {
 		hape, _ := New(
 			Type(""),
 			Thinking(),
-			Thoughts('o'),
+			Thoughts1('o'),
+			Thoughts2('o'),
 			Eyes("xx"),
 			Tongue("u"),
 			Random(),

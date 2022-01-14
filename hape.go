@@ -11,7 +11,8 @@ type Hape struct {
 	eyes            string
 	tongue          string
 	typ             *HapeFile
-	thoughts        rune
+	thoughts1       rune
+	thoughts2       rune
 	thinking        bool
 	ballonWidth     int
 	disableWordWrap bool
@@ -23,9 +24,10 @@ type Hape struct {
 // New returns pointer of Hape struct that made by options
 func New(options ...Option) (*Hape, error) {
 	hape := &Hape{
-		eyes:     "oo",
-		tongue:   "  ",
-		thoughts: '/',
+		eyes:      "oo",
+		tongue:    "  ",
+		thoughts1: 'o',
+		thoughts2: 'O',
 		typ: &HapeFile{
 			Name:         "mobile",
 			BasePath:     "hapes",
@@ -150,9 +152,16 @@ func Thinking() Option {
 // Thoughts Thoughts allows you to specify
 // the rune that will be drawn between
 // the speech bubbles and the hape
-func Thoughts(thoughts rune) Option {
+func Thoughts1(thoughts1 rune) Option {
 	return func(c *Hape) error {
-		c.thoughts = thoughts
+		c.thoughts1 = thoughts1
+		return nil
+	}
+}
+
+func Thoughts2(thoughts2 rune) Option {
+	return func(c *Hape) error {
+		c.thoughts2 = thoughts2
 		return nil
 	}
 }

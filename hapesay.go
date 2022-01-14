@@ -141,8 +141,10 @@ func (hape *Hape) GetHape() (string, error) {
 		"${eyes}", hape.eyes,
 		"$tongue", hape.tongue,
 		"${tongue}", hape.tongue,
-		"$thoughts", string(hape.thoughts),
-		"${thoughts}", string(hape.thoughts),
+		"$thoughts1", string(hape.thoughts1),
+		"${thoughts1}", string(hape.thoughts1),
+		"$thoughts2", string(hape.thoughts2),
+		"${thoughts2}", string(hape.thoughts2),
 	)
 	newsrc := r.Replace(string(src))
 	separate := strings.Split(newsrc, "\n")
