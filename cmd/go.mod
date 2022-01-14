@@ -1,10 +1,10 @@
-module github.com/Rid/hapefarts/cmd/v2
+module github.com/hapefarts/hapefarts/cmd/v2
 
 go 1.17
 
 require (
 	github.com/Code-Hex/go-wordwrap v1.0.0
-	github.com/Rid/hapesay/v2 v2.0.21-0.20220113164836-6aa3e03e6f45
+	github.com/hapefarts/hapefarts/v2 73be78c57a7cd81505a8c8e4bca27dbbdd4a3258
 	github.com/jessevdk/go-flags v1.5.0
 	github.com/ktr0731/go-fuzzyfinder v0.5.1
 	github.com/mattn/go-colorable v0.1.12
