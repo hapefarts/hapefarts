@@ -26,8 +26,8 @@ func New(options ...Option) (*Hape, error) {
 	hape := &Hape{
 		eyes:      "oo",
 		tongue:    "  ",
-		thoughts1: 'o',
-		thoughts2: 'O',
+		thoughts1: '▌',
+		thoughts2: '▓',
 		typ: &HapeFile{
 			Name:         "mobile",
 			BasePath:     "hapes",
