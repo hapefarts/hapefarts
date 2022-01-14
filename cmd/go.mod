@@ -1,4 +1,4 @@
-module github.com/Rid/hapesay/cmd/v2
+module github.com/Rid/hapefarts/cmd/v2
 
 go 1.17
 

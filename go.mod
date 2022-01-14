@@ -1,4 +1,4 @@
-module github.com/Rid/hapesay/v2
+module github.com/Rid/hapefarts/v2
 
 go 1.17
 
